@@ -6,8 +6,6 @@ Fastest, easiest and simplest web framework for Python.
 * A **easy** python web framework for beginners.
 * **Simple** integration with frontend frameworks to deploying a machine learning model in a modern web application.
 
-[Learn how to use Retic in your own project.]()
-
 ## Installation
 
 Install and update using [Pip](https://pypi.org/):
