@@ -5,3 +5,5 @@ launch.json
 venv/
 .env
 app.py
+dist
+retic.egg*

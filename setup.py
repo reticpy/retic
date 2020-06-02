@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='retic',
-    version='0.0.1',
+    version='0.0.2',
     license='MIT',
     description='Fastest, easiest and simple web framework for Python.',
     long_description=long_description,
@@ -14,7 +14,7 @@ setuptools.setup(
     author_email='braianflorian@gmail.com',
     url='https://github.com/reticpy/retic',
     packages=setuptools.find_packages(),
-    download_url='https://github.com/reticpy/retic/archive/0.0.1.tar.gz',
+    download_url='https://github.com/reticpy/retic/archive/0.0.2.tar.gz',
     keywords=['PYTHON', 'WEB FRAMEWORK', 'MACHINE LEARNING WEB FRAMEWORK'],
     install_requires=[
         "environs>=7.4.0",
@@ -23,7 +23,7 @@ setuptools.setup(
         "repath>=0.9.0"
     ],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
