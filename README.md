@@ -1,7 +1,5 @@
 # Retic.<span></span>py
 
----
-
 Fastest, easiest and simplest web framework for Python.
 
 * Building secure and **fast** REST API Services with Python
@@ -9,8 +7,6 @@ Fastest, easiest and simplest web framework for Python.
 * **Simple** integration with frontend frameworks to deploying a machine learning model in a modern web application.
 
 [Learn how to use Retic in your own project.]()
-
----
 
 ## Installation
 
@@ -20,7 +16,6 @@ Install and update using [Pip](https://pypi.org/):
 # Get the latest stable release of Retic
 $ pip install -U retic
 ```
----
 
 ### Simple rest api example in python
 ```python
@@ -38,12 +33,9 @@ app.listen(
     hostname="localhost"
 )
 ```
----
 
 ## Documentation
 In progress...
-
----
 
 ## License
 
