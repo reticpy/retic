@@ -1,0 +1,7 @@
+*pycache__/
+.vscode
+.env
+launch.json
+venv/
+.env
+app.py

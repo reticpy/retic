@@ -1,0 +1,1 @@
+from .gettext import _s, _t
