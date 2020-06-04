@@ -2,11 +2,11 @@
 
 Fastest, easiest and simplest web framework for Python.
 
-* Building secure and **fast** REST API Services with Python
+* Building secure and **fast** REST services with Python
 * A **easy** python web framework for beginners.
 * **Simple** integration with frontend frameworks to deploying a machine learning model in a modern web application.
 
-## Installation
+## Install a python rest api framework
 
 Install and update using [Pip](https://pypi.org/):
 
@@ -15,12 +15,13 @@ Install and update using [Pip](https://pypi.org/):
 $ pip install -U retic
 ```
 
-### Simple rest api example in python
+## Simple rest api example in python
+
 ```python
 from retic import Router, App as app
 
 router = Router()
-router.get("/", lambda req, res, next: res.ok({"msg": "Welcome to Retic ^^"}))
+router.get("/", lambda req, res, next: res.ok({"msg": "This is a REST api Python example. Welcome to Retic ^^."}))
 
 app.use(router)
 
@@ -32,9 +33,23 @@ app.listen(
 )
 ```
 
-## Documentation
-In progress...
+## Quickstart
+
+Build a python rest api in 5 minutes.
+
+## Changelog
+
+[Learn about the latest improvements][changelog].
+
+## Want to help?
+
+Do you want to send an error, contribute some code or improve the documentation? Great, you can do it! Read our guidelines to [contribute][contribute] and then review one of our issues in the [hotlist: community-help][hotlist].
 
 ## License
 
-[MIT](LICENSE)
+[MIT][LICENSE]
+
+[LICENSE]: https://github.com/reticpy/retic/blob/dev_initial_app/LICENSE
+[changelog]: https://github.com/reticpy/retic/blob/dev_initial_app/CHANGELOG.md
+[contribute]: https://github.com/reticpy/retic/blob/dev_initial_app/CONTRIBUTING.md
+[hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-hel
