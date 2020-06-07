@@ -4,12 +4,15 @@ import sys
 
 
 class HttpMethod(object):
-    def __init__(self, method: str, route: any):
+    def __init__(self, router, method: str, route: any):
         """Initial instance of the HttpMethod Class.
 
+        :param router: Instance of the Router Class, this is use when I
+            need to use router.get(...).get(...).post(...)
         :param method: HTTP Request Method from the client request
         :param route: Route function from Router class
         """
+        self.router = router
         self.method = method
         self.route = route
 
@@ -28,7 +31,7 @@ class HttpMethod(object):
             if type(path) is not str:
                 raise TypeError("error: The path type must be a string format")
             self.route(path, self.method.upper(), args[1:])
-            return self
+            return self.router
         except Exception as e:
             traceback.print_exc(file=sys.stdout)
             print(get_file_error_exception())

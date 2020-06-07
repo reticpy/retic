@@ -13,7 +13,7 @@ class Router(object):
     def __init__(self):
         """Initial instance of the Router Class"""
         self.__dict__ = {
-            key: HttpMethod(key, self.route).default for key in get_http_methods()
+            key: HttpMethod(self, key, self.route).default for key in get_http_methods()
         }
         self.name = "router"
         self.methods = {key: [] for key in get_http_methods(True)}

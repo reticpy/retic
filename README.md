@@ -21,7 +21,9 @@ $ pip install -U retic
 from retic import Router, App as app
 
 router = Router()
-router.get("/", lambda req, res, next: res.ok({"msg": "This is a REST api Python example. Welcome to Retic ^^."}))
+router \
+    .get("/", lambda req, res, next: res.ok({"msg": "Welcome to Retic ^^"})) \
+    .get("/example", lambda req, res: res.ok({"msg": "Simple rest api example in Python"}))
 
 app.use(router)
 

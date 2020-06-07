@@ -1,2 +1,0 @@
-msgid "DEFAULT_RESPONSE" 
-msgstr "Welcome to Retic!"
