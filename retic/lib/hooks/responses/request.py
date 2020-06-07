@@ -16,21 +16,27 @@ class Request(Request):
         return self
 
     def param(self, key: str, default_value: str = None):  # str
-        """Returns the value of the parameter with the specified name."""
+        """Returns the value of the parameter with the specified name.
+        
+        :param key: Name of the variable to set
+        :param default_value: Value of the variable if this one doesn't exist
+        """
         if key in self.params:
             return self.params.get(key)
         elif key in self.body:
             return self.body.get(key)
         elif key in self.args:
             return self.args.get(key)
-        elif key in self.retic:
-            return self.retic.get(key)
-        return default_value
+        return self.retic.get(key, default_value)
 
     def set(self, key: str, value: any = None):  # str
         """Set a value in the requests (req).
 
-        Please note that names are not case sensitive."""
+        Please note that names are not case sensitive.
+        
+        :param key: Name of the variable to set
+        :param value: Value of the variable
+        """
         try:
             return self.retic.setdefault(key.lower(), value)
         except KeyError:
@@ -39,7 +45,10 @@ class Request(Request):
     def get(self, key: str):  # str
         """Returns the value of the request (req).
 
-        Please note that names are not case sensitive."""
+        Please note that names are not case sensitive.
+        
+        :param key: Name of the variable to find
+        """
         try:
             return self.retic.get(key.lower(), None)
         except KeyError:

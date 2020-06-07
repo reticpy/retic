@@ -4,14 +4,46 @@ from werkzeug.serving import run_simple
 # Router
 from .router import Router
 
+# Environs
+from environs import Env
+
 APP_HOST = "0.0.0.0"
 APP_PORT = 1801
 
 
+class Config(object):
+    def __init__(self, env):
+        self.__env = env
+        self.__config = {}
+
+    def get(self, key, default_value=None):
+        """Returns the value of the parameter with the specified name.
+        If the variable doesn't exist in the configuration values, this search
+        in the environment variables and return a string. If you need a specific
+        type of the environment variable, you need to use *app.env.int("variable_name")* for example.
+
+        :param key: Name of the variable to find
+        :param default_value: Value of the variable if this one doesn't exist
+        """
+        return self.__config.get(key, self.__env(key, default_value))
+
+    def set(self, key, value):
+        """Set a value in the settings of the app.
+
+        Please note that names are not case sensitive.
+
+        :param key: Name of the variable to set
+        :param value: Value of the variable
+        """
+        self.__config.setdefault(key, value)
+
+
 class App(object):
-    def __init__(self):
+    def __init__(self, env):
         self.router = None
         self.apps = {}
+        self.env: Env = env
+        self.config = Config(env)
 
     @property
     def router(self):
@@ -44,6 +76,8 @@ class App(object):
             self.router = item
         elif name:
             self.apps.setdefault(name, item)
+        else:
+            raise KeyError("error: A name for the item is necesary")
 
     def listen(
         self,
