@@ -1,11 +1,24 @@
+# Hooks
 from retic.lib.hooks.responses import Request, Response, Next
-from httpmethods import get_http_methods
-from inspect import getfile
+
+# Router
 from .httpmethod import HttpMethod
 from .route import Route
 from .layer import Layer
+
+# Httpmethods
+from httpmethods import get_http_methods
+
+# Inspect
+from inspect import getfile
+
+# Traceback
 import traceback
+
+# Sys
 import sys
+
+# Os
 import os
 
 

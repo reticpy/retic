@@ -1,5 +1,10 @@
+# Werkzeug
 from werkzeug.wrappers import Response
+
+# Httpmethods
 from httpmethods import get_status_by_code
+
+# Utils
 from retic.utils.json import jsonify
 
 

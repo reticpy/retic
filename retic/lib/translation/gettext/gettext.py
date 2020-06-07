@@ -1,4 +1,7 @@
+# Retic
 from retic import cfg
+
+# Gettext
 import gettext
 
 DOMAIN = cfg.APP_LANG_DOMAIN

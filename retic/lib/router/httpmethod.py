@@ -1,5 +1,10 @@
+# Utils
 from retic.utils.exceptions import get_file_error_exception
+
+# Traceback
 import traceback
+
+# Sys
 import sys
 
 

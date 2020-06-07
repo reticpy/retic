@@ -1,5 +1,8 @@
-from .exceptions import get_file_error_exception
+# Json
 from json import dumps, loads
+
+# Exceptions
+from .exceptions import get_file_error_exception
 
 
 def jsonify(object):
