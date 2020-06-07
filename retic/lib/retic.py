@@ -13,6 +13,14 @@ class App(object):
         self.router = None
         self.apps = {}
 
+    @property
+    def router(self):
+        return self.__router
+
+    @router.setter
+    def router(self, value):
+        self.__router = value
+
     def application(self, environ, start_response):
         """Application for send the response returned by the application to the client
 

@@ -32,6 +32,14 @@ class Router(object):
         self.methods = {key: [] for key in get_http_methods(True)}
         self.args = self.params = []
         self.result = None
+        
+    @property
+    def result(self):
+        return self.__result
+    
+    @result.setter
+    def result(self, value):
+        self.__result=value
 
     def main(self, environ: dict, start_response: dict):  # []
         """Router main for handle all routes
@@ -82,12 +90,6 @@ class Router(object):
 
     def _set_response(self, item: dict):
         """Response function for the request."""
-        if self.result:
-            print(os.path.abspath(getfile(item)))
-            print(
-                "error: Cannot set headers after they are sent to the client. Check if you also use the status function"
-            )
-            return
         self.result = item
         return self.result
 
