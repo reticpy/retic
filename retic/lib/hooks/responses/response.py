@@ -87,7 +87,7 @@ class Response(Response):
     def send_string(self, data_str: str = ""):  # Response
         """Send a response to http requests"""
         self.set_data(data_str)
-        self._set_response(self(self._environ, self._start_response))
+        return self._set_response(self(self._environ, self._start_response))
 
     def _send_by_status(self, status, content):
         return self.set_status(status).send_string(content or get_status_by_code(status))

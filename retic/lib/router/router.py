@@ -42,7 +42,7 @@ class Router(object):
             _request = Request(environ).config()
             _response = Response().config(environ, start_response, self._set_response)
             self._endpoint(_request, _response)
-            _result = self.result
+            _result = self._response_request(_response, self.result)
             self.result = None
             return _result
         except Exception as e:
@@ -89,6 +89,18 @@ class Router(object):
             )
             return
         self.result = item
+        return self.result
+
+    def _response_request(self, res, result):
+        """Response to a client request. If response was not specific, return
+        status 200 and message 200 for default
+        
+        :param res: Represents a response from a web request.
+        :param result: Instance of the object with the werkzeug response
+        """
+        if result:
+            return result
+        return res.ok()
 
     def _endpoint(self, req: Request, res: Response):  # []
         """This function handle any request from a client, search in the Route List
