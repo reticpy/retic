@@ -3,10 +3,10 @@
 Fastest, easiest and simplest web framework for Python.
 
 * Building secure and **fast** REST services with Python
-* A **easy** python web framework for beginners.
+* A **easy** Python web framework for beginners.
 * **Simple** integration with frontend frameworks to deploying a machine learning model in a modern web application.
 
-## Install a python rest api framework
+## Install a Python rest api framework
 
 Install and update using [Pip](https://pypi.org/):
 
@@ -15,9 +15,9 @@ Install and update using [Pip](https://pypi.org/):
 $ pip install -U retic
 ```
 
-## Simple rest api example in python
+## Simple rest api example in Python
 
-```python
+```Python
 from retic import Router, App as app
 
 router = Router()
@@ -35,7 +35,7 @@ app.listen(
 
 ## Quickstart
 
-Build a python rest api in 5 minutes.
+Build a Python rest api in 5 minutes.
 
 ## Changelog
 

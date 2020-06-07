@@ -1,5 +1,4 @@
 from werkzeug.serving import run_simple
-from retic.lib.translation.gettext import _s
 from .router import Router
 
 APP_HOST = "0.0.0.0"
@@ -18,7 +17,7 @@ class App(object):
         :param start_response: Represents a response from a web request."""
         if not self.router:
             start_response('200 OK', [('Content-Type', 'text/html')])
-            return [_s("DEFAULT_RESPONSE").encode("utf8")]
+            return ["Welcome to Retic!".encode("utf8")]
         else:
             return self.router.main(environ, start_response)
 
@@ -27,7 +26,7 @@ class App(object):
 
         :param item: item of specific type for specific settings in a app
         :return: instance of the parant type for the item
-        """ 
+        """
 
         """TODO: implement another types of item"""
         if isinstance(item, Router):

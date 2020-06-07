@@ -5,19 +5,14 @@ DOMAIN = cfg.APP_LANG_DOMAIN
 LOCALEDIR = cfg.APP_LANG_LOCALEDIR
 LANGUAGES = cfg.APP_LANG_LANGUAGES
 FALLBACK = cfg.APP_LANG_FALLBACK
-_s = _t = None
-
-core = gettext.translation(
-    "base", "retic/locale",
-    languages=["en_US"],
-    fallback=True
-)
-_s = core.gettext
+_t = None
 
 if LOCALEDIR:
     _exists = gettext.find(DOMAIN, LOCALEDIR, LANGUAGES, all=False)
     if not _exists:
-        raise FileNotFoundError(_s("ERR_NOT_LOCALE {0}").format(LOCALEDIR))
+        raise FileNotFoundError(
+            "{0} doesn't have a valid .mo translate file, check if you have a .po files"
+        ).format(LOCALEDIR)
 
     t = gettext.translation(
         domain=DOMAIN,

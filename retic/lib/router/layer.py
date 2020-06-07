@@ -1,5 +1,4 @@
 from retic.utils.exceptions import get_file_error_exception
-from retic.lib.translation.gettext import _s
 from retic.utils.general import path_regexp
 
 
@@ -22,7 +21,11 @@ class Layer(object):
             return self.handle(req, res, next)
         except Exception as e:
             get_file_error_exception(3)
-            raise RuntimeError(_s('NO_VALID_CONTROLLERS {0}').format(str(e)))
+            raise RuntimeError(
+                "error: Some controller has a problem, check it please. {0}".format(
+                    str(e)
+                )
+            )
 
     def match(self, path: str):  # self
         """Search to specific layer for a path

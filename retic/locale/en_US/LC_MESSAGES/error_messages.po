@@ -7,9 +7,6 @@ msgstr "error: The route has the next format: METHOD(path, [...handlers function
 msgid "ERR_DISPATCH_NEXT" 
 msgstr "Next function is invalid, the function has not more controllers"
 
-msgid "ERR_NOT_LOCALE {0}" 
-msgstr "{0} doesn't have a valid .mo translate file, check if you have a .po files"
-
 msgid "ERR_CONTROLLER_FUNC" 
 msgstr "The controllers parameters are invalid"
     

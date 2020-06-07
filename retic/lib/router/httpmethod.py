@@ -1,5 +1,4 @@
 from retic.utils.exceptions import get_file_error_exception
-from retic.lib.translation.gettext import _s
 import traceback
 import sys
 
@@ -22,10 +21,12 @@ class HttpMethod(object):
         """
         try:
             if len(args) < 2:
-                raise Exception(_s('NO_VALID_ROUTE'))
+                raise Exception(
+                    "error: The route has the next format: METHOD(path, [...handlers functions])"
+                )
             path = args[0]
             if type(path) is not str:
-                raise TypeError(_s('NO_VALID_ROUTE_PATH'))
+                raise TypeError("error: The path type must be a string format")
             self.route(path, self.method.upper(), args[1:])
             return self
         except Exception as e:

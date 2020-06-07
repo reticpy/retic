@@ -1,5 +1,4 @@
 from retic.utils.general import get_number_parameters
-from retic.lib.translation.gettext import _s
 
 
 class Route(object):
@@ -19,13 +18,13 @@ class Route(object):
         :param next: It must call next() to pass control to the next middleware function
         """
         _handles = next.stack
-        assert _handles, _s('ERR_DISPATCH_NEXT')
-        
+        assert _handles, "error: Next function is invalid, the function has not more controllers"
+
         _fn = _handles.pop(0).handle
         _num_param = get_number_parameters(_fn)
-        
+
         if _num_param == 3:
             return _fn(req, res, next.next)
         elif _num_param == 2:
             return _fn(req, res)
-        raise Exception(_s('ERR_CONTROLLER_FUNC'))
+        raise Exception("error: The controllers parameters are invalid")

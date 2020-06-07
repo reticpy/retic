@@ -1,5 +1,4 @@
 from retic.lib.hooks.responses import Request, Response, Next
-from retic.lib.translation.gettext import _s
 from httpmethods import get_http_methods
 from inspect import getfile
 from .httpmethod import HttpMethod
@@ -46,7 +45,7 @@ class Router(object):
         """
         _route = Route(path)
         for _handler in handlers:
-            assert _handler, _s('NO_VALID_ROUTE')
+            assert _handler, "error: The route has the next format: METHOD(path, [...handlers functions])"
             layer = Layer(
                 "/",
                 {
@@ -72,7 +71,9 @@ class Router(object):
         """Response function for the request."""
         if self.result:
             print(os.path.abspath(getfile(item)))
-            print(_s('ERR_HTTP_HEADERS_SENT'))
+            print(
+                "error: Cannot set headers after they are sent to the client. Check if you also use the status function"
+            )
             return
         self.result = item
 
@@ -84,16 +85,22 @@ class Router(object):
         try:
             _method = self.methods[req.method]
             if not _method:
-                raise KeyError(_s('NO_VALID_METHOD {0}').format(req.method))
+                raise KeyError(
+                    "error: The HTTP method {0} doesn't exist".format(
+                        req.method)
+                )
 
             _layer: Layer = self._search_layer(req.path, _method)
 
             if not _layer:
-                raise KeyError(_s('NO_VALID_METHOD {0}').format(req.method))
+                raise KeyError(
+                    "error: The HTTP method {0} doesn't exist".format(
+                        req.method)
+                )
 
             _has_method = self._handles_method(_layer)
 
-            assert _has_method, _s('NO_VALID_ROUTE')
+            assert _has_method, "error: The route has the next format: METHOD(path, [...handlers functions])"
 
             req.params = _layer.params
             return _layer.handle_request(req, res, Next(req, res, _layer))

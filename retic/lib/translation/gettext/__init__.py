@@ -1,1 +1,1 @@
-from .gettext import _s, _t
+from .gettext import _t
