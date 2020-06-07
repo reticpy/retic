@@ -4,6 +4,6 @@
 launch.json
 venv/
 .env
-app.py
+app*
 dist
 retic.egg*

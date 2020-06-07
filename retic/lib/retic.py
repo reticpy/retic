@@ -37,6 +37,20 @@ class Config(object):
         """
         self.__config.setdefault(key, value)
 
+    def from_objecct(self, settings):
+        """Set settings in based a dictionary, for example, if you want to
+        set a additional configuration you nedd pass:
+
+        ``app.use( { u'port': 8080 } )``
+
+        :param settings: An object of type dictionary that contains the configurations
+        """
+        if not isinstance(settings, dict):
+            raise TypeError(
+                "error: A settings dictionary of type dict is necesary"
+            )
+        self.__config = {**self.__config, **settings}
+
 
 class App(object):
     def __init__(self, env):

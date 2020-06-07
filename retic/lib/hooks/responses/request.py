@@ -5,19 +5,43 @@ from werkzeug.wrappers import Request
 from retic.utils.json import parse
 
 
+class Body(object):
+    """Class for the body from a request"""
+
+    def __init__(self, type, value):
+        self.type: dict = type
+        self.value: dict = value
+
+    @property
+    def type(self):
+        return self.__type
+
+    @type.setter
+    def type(self, value):
+        self.__type = value
+
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, value):
+        self.__value = value
+
+
 class Request(Request):
+    """Initial instance of the Request Class"""
     retic = {}
     params = {}
-    """Initial instance of the Request Class"""
 
     def config(self):
         """Set another attributes to Instance"""
-        self.body = self._get_body()
+        self.body: Body = self._get_body()
         return self
 
     def param(self, key: str, default_value: str = None):  # str
         """Returns the value of the parameter with the specified name.
-        
+
         :param key: Name of the variable to set
         :param default_value: Value of the variable if this one doesn't exist
         """
@@ -33,7 +57,7 @@ class Request(Request):
         """Set a value in the requests (req).
 
         Please note that names are not case sensitive.
-        
+
         :param key: Name of the variable to set
         :param value: Value of the variable
         """
@@ -46,7 +70,7 @@ class Request(Request):
         """Returns the value of the request (req).
 
         Please note that names are not case sensitive.
-        
+
         :param key: Name of the variable to find
         """
         try:
@@ -63,15 +87,46 @@ class Request(Request):
         return {**self.params, **self.body, **self.args, **self.retic}
 
     def _get_body(self):
+        """Get the body for a request from to client. If this one is not exists, return
+
+        ``{ type: "undefiend", value: "undefiend" }``
+
+        The response takes possibly four keys: json, form, text, and raw. 
+
+        For example if the request body is a json object, you will get:
+
+        ``{ type: "json", value: json_object }``
+
+        Also, if a exception is detected, you will get
+
+        ``{ type: "error", value: error_object }``
+        """
+        _type = ''
+        _value = ''
         _content_type = self.headers.get('content-type', type=str)
         try:
-            if _content_type.startswith('application/json'):
-                _data = parse(self.get_data())
+            if not _content_type:
+                _type = 'undefiend'
+                _value = 'undefiend'
+            elif _content_type.startswith('application/json'):
+                _type = "json"
+                _value = parse(self.get_data())
             elif _content_type.startswith('multipart/form-data') \
                     or _content_type.startswith('application/x-www-form-urlencoded'):
-                _data = self.form
+                _type = 'form'
+                _value = self.form
+            elif _content_type.startswith('text/plain'):
+                _type = "text"
+                _value = self.get_data().decode("utf-8")
             else:
-                _data = {u"body": self.get_data().decode('utf-8')}
-            return _data
+                _type = 'raw'
+                _value = self.get_data()
+            return Body(
+                type=_type,
+                value=_value,
+            )
         except Exception as e:
-            return {}
+            return Body(
+                type='error',
+                value=e,
+            )

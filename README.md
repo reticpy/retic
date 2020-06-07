@@ -18,6 +18,7 @@ $ pip install -U retic
 ## Simple rest api example in Python
 
 ```Python
+# Retic
 from retic import Router, App as app
 
 router = Router()
