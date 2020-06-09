@@ -1,4 +1,4 @@
-environs
-httpmethods
-Werkzeug
-repath
+environs>=8.0.0
+httpmethods>=1.0.5
+Werkzeug>=1.0.1
+repath>=0.9.0
