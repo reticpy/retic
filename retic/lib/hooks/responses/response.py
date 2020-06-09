@@ -1,5 +1,6 @@
 # Werkzeug
 from werkzeug.wrappers import Response
+from werkzeug.routing import RequestRedirect
 
 # Httpmethods
 from httpmethods import get_status_by_code
@@ -88,6 +89,11 @@ class Response(Response):
         """Send a response to http requests"""
         self.set_data(data_str)
         return self._set_response(self(self._environ, self._start_response))
+
+    def redirect(self, new_url):  # Response
+        """Redirect to another url with the actual request"""
+        _result = RequestRedirect(new_url=new_url).get_response(self._environ)
+        return self._set_response(_result(self._environ, self._start_response))
 
     def _send_by_status(self, status, content):
         return self.set_status(status).send_string(content or get_status_by_code(status))

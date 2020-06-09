@@ -7,3 +7,4 @@ venv/
 app*
 dist
 retic.egg*
+examples/

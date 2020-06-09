@@ -1,8 +1,8 @@
-# Retic
-from retic import cfg
-
 # Gettext
 import gettext
+
+# Retic
+from retic import cfg
 
 DOMAIN = cfg.APP_LANG_DOMAIN
 LOCALEDIR = cfg.APP_LANG_LOCALEDIR

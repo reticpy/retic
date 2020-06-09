@@ -1,13 +1,13 @@
 # Werkzeug
 from werkzeug.serving import run_simple
 
-# Router
-from .router import Router
-
 # Environs
 from environs import Env
 
-APP_HOST = "0.0.0.0"
+# Retic
+from retic.lib.router import Router
+
+APP_HOST = "127.0.0.1"
 APP_PORT = 1801
 
 
@@ -54,7 +54,7 @@ class Config(object):
 
 class App(object):
     def __init__(self, env):
-        self.router = None
+        self.router: Router = None
         self.apps = {}
         self.env: Env = env
         self.config = Config(env)

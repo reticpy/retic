@@ -1,9 +1,7 @@
 # Retic
-from .retic import App, Router
-
-# Hooks
-from .hooks.responses import Request, Response, Next
-from .hooks.system.env import env
+from retic.lib.retic import App, Router
+from retic.lib.hooks.responses import Request, Response, Next
+from retic.lib.hooks.system.env import env
 
 # build App
 App = App(env)

@@ -1,10 +1,5 @@
-# Hooks
-from retic.lib.hooks.responses import Request, Response, Next
-
-# Router
-from .httpmethod import HttpMethod
-from .route import Route
-from .layer import Layer
+# Werkzeug
+from werkzeug.routing import RequestRedirect
 
 # Httpmethods
 from httpmethods import get_http_methods
@@ -21,10 +16,19 @@ import sys
 # Os
 import os
 
+# Retic
+from retic.lib.hooks.responses import Request, Response, Next
+from retic.lib.router.httpmethod import HttpMethod
+from retic.lib.router.route import Route
+from retic.lib.router.layer import Layer
+
 
 class Router(object):
-    def __init__(self):
-        """Initial instance of the Router Class"""
+    def __init__(self, strict_slashes=True):
+        """Initial instance of the Router Class
+
+        :param strict_slashe: If a rule ends with a forward slash but the matching URL does not, redirect to the ending no forward slash URL.
+        """
         self.__dict__ = {
             key: HttpMethod(self, key, self.route).default for key in get_http_methods()
         }
@@ -32,14 +36,17 @@ class Router(object):
         self.methods = {key: [] for key in get_http_methods(True)}
         self.args = self.params = []
         self.result = None
-        
+        self.rules = {
+            "strict_slashes": strict_slashes
+        }
+
     @property
     def result(self):
         return self.__result
-    
+
     @result.setter
     def result(self, value):
-        self.__result=value
+        self.__result = value
 
     def main(self, environ: dict, start_response: dict):  # []
         """Router main for handle all routes
@@ -79,7 +86,7 @@ class Router(object):
         _layer = Layer(
             path,
             {
-                u"strict": False,
+                u"strict": self.rules.get('strict_slashes', False),
                 u"end": True
             },
             _route.dispatch
@@ -96,7 +103,7 @@ class Router(object):
     def _response_request(self, res, result):
         """Response to a client request. If response was not specific, return
         status 200 and message 200 for default
-        
+
         :param res: Represents a response from a web request.
         :param result: Instance of the object with the werkzeug response
         """
@@ -110,6 +117,13 @@ class Router(object):
         :param req: Request is used to describe an request to a server.
         :param res: Represents a response from a web request."""
         try:
+            # validate if path contains slash and it isn't a "/" path
+            if self.rules.get('strict_slashes', False) \
+                    and len(req.path) > 1 \
+                    and "/" in req.path[-1]:
+                raise ValueError(req.path[:-1])
+
+            # search the specific method
             _method = self.methods[req.method]
             if not _method:
                 raise KeyError(
@@ -117,6 +131,7 @@ class Router(object):
                         req.method)
                 )
 
+            # search the layer for this method
             _layer: Layer = self._search_layer(req.path, _method)
 
             if not _layer:
@@ -125,12 +140,17 @@ class Router(object):
                         req.method)
                 )
 
+            # search the first handle for this one
             _has_method = self._handles_method(_layer)
 
             assert _has_method, "error: The route has the next format: METHOD(path, [...handlers functions])"
 
+            # set the params to request
             req.params = _layer.params
+            # return the handle logic
             return _layer.handle_request(req, res, Next(req, res, _layer))
+        except ValueError as e:            
+            return res.redirect(str(e))
         except KeyError as e:
             return res.not_found(str(e))
         except Exception as e:

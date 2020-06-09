@@ -1,2 +1,2 @@
 # Gettext
-from .gettext import _t
+from retic.lib.translation.gettext import _t
