@@ -13,8 +13,28 @@ APP_PORT = 1801
 
 class Config(object):
     def __init__(self, env):
-        self.__env = env
-        self.__config = {}
+        self.env = env
+        self.config = {}
+
+    @property
+    def env(self):
+        return self.__env
+
+    @env.setter
+    def env(self, value):
+        self.__env = value
+
+    @property
+    def config(self):
+        return self.__config
+
+    @config.setter
+    def config(self, value):
+        if not isinstance(value, dict):
+            raise TypeError(
+                "error: A settings dictionary of type dict is necesary"
+            )
+        self.__config = value
 
     def get(self, key, default_value=None):
         """Returns the value of the parameter with the specified name.
@@ -25,7 +45,7 @@ class Config(object):
         :param key: Name of the variable to find
         :param default_value: Value of the variable if this one doesn't exist
         """
-        return self.__config.get(key, self.__env(key, default_value))
+        return self.__config.get(key, self.env(key, default_value))
 
     def set(self, key, value):
         """Set a value in the settings of the app.
@@ -37,11 +57,11 @@ class Config(object):
         """
         self.__config.setdefault(key, value)
 
-    def from_objecct(self, settings):
+    def from_object(self, settings):
         """Set settings in based a dictionary, for example, if you want to
         set a additional configuration you nedd pass:
 
-        ``app.use( { u'port': 8080 } )``
+        ``app.config.from_object( { u'port': 8080 } )``
 
         :param settings: An object of type dictionary that contains the configurations
         """
@@ -51,6 +71,13 @@ class Config(object):
             )
         self.__config = {**self.__config, **settings}
 
+    def clear(self):
+        """Clear the actual settings, however, the settings from the environment 
+        variables isn't clear. You can search variables in the environment with the function
+        ``app.config.get("environment_name")``
+        """
+        self.__config.clear()
+
 
 class App(object):
     def __init__(self, env):
@@ -58,6 +85,26 @@ class App(object):
         self.apps = {}
         self.env: Env = env
         self.config = Config(env)
+
+    @property
+    def config(self):
+        return self.__config
+
+    @config.setter
+    def config(self, value):
+        """If the object exists you can't replace his value.
+
+        Visit to documentation if you want clear the settings with the function
+        ``app.config.clear()``
+
+        Visit to documentation if you want set the settings from a onject with the funciont
+        ``app.config.from_object()``
+        """
+        if hasattr(self, "config"):
+            raise TypeError(
+                "error: You can't assign the settings of this ways. if you want to assign from an object please use to *app.config.from_object()* function"
+            )
+        self.__config = value
 
     @property
     def router(self):

@@ -8,7 +8,7 @@ import pytest
 from retic import App, Router
 
 # Utils
-from tests.utils.general import get_body_request
+from retic.utils.general import get_body_request
 
 PATHS = [
     ("/withoutress")
@@ -21,14 +21,14 @@ CONTROLLERS = [
 
 @pytest.fixture
 def app():
-    """Returns a HttpMethod"""
+    """Returns an app client without routes"""
     _app = Client(App.application)
     return _app
 
 
 @pytest.fixture
 def app_routes():
-    """Returns a HttpMethod"""
+    """Returns an app client with routes"""
     _router = Router()
     for _path in PATHS:
         """define a new path using the response from a path definition"""
@@ -40,7 +40,7 @@ def app_routes():
     return _app
 
 
-@pytest.mark.lib_responses
+@pytest.mark.lib_hooks
 @pytest.mark.parametrize("path", PATHS)
 def test_response_without_method(app, path):
     # we include a valid route and controllers
@@ -51,7 +51,7 @@ def test_response_without_method(app, path):
         app_iter) == "error: The HTTP method GET doesn't exist", "The default from the api when the path doesn't exist is different to documentation"
 
 
-@pytest.mark.lib_responses
+@pytest.mark.lib_hooks
 @pytest.mark.parametrize("path", PATHS)
 def test_response_without_method_routes(app_routes, path):
     # we include a valid route and controllers

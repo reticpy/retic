@@ -28,3 +28,11 @@ def path_regexp(path, keys, options):
 def get_number_parameters(func):
     """Returns the number of parameters of a specific function."""
     return len(inspect.signature(func).parameters)
+
+
+def get_body_request(app_iter):
+    """Generate a string from response of the app requests
+
+    :param app_iter: Response from the request to api
+    """
+    return (b''.join(app_iter).splitlines()[0]).decode("utf-8")
