@@ -13,7 +13,9 @@ APP_PORT = 1801
 
 class Config(object):
     def __init__(self, env):
+        """Variables from the environment"""
         self.env = env
+        """variables from user settings"""
         self.config = {}
 
     @property
@@ -30,6 +32,7 @@ class Config(object):
 
     @config.setter
     def config(self, value):
+        """If the type of the value is not dict, it is not allowed"""
         if not isinstance(value, dict):
             raise TypeError(
                 "error: A settings dictionary of type dict is necesary"
