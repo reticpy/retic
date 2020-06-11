@@ -16,15 +16,16 @@ CONTROLLERS = [
 
 @pytest.fixture
 def http_method():
-    '''Returns a HttpMethod'''
+    """Returns a HttpMethod"""
     _router = router.Router()
     _method = 'GET'
     return httpmethod.HttpMethod(_router, _method, _router.route)
 
 
+@pytest.mark.lib_router
 @pytest.mark.parametrize("path", PATHS)
 def test_default(http_method: httpmethod.HttpMethod, path):
-    # we include a valid route and controllers
+    """we include a valid route and controllers"""
     _default = http_method.default(
         path,
         *CONTROLLERS
@@ -32,6 +33,7 @@ def test_default(http_method: httpmethod.HttpMethod, path):
     assert _default == http_method.router, "test failed"
 
 
+@pytest.mark.lib_router
 @pytest.mark.parametrize("path", PATHS)
 def test_default_exception(http_method: httpmethod.HttpMethod, path):
     with pytest.raises(ValueError) as excinfo:
@@ -43,6 +45,7 @@ def test_default_exception(http_method: httpmethod.HttpMethod, path):
         excinfo.value)
 
 
+@pytest.mark.lib_router
 @pytest.mark.parametrize("path", PATHS)
 def test_default_type_error(http_method: httpmethod.HttpMethod, path):
     with pytest.raises(TypeError) as excinfo:
@@ -52,4 +55,5 @@ def test_default_type_error(http_method: httpmethod.HttpMethod, path):
             *CONTROLLERS
         )
     assert "error: The path type must be a string format" == str(
-        excinfo.value)
+        excinfo.value
+    )

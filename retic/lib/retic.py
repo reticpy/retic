@@ -73,8 +73,16 @@ class App(object):
         :param environ: Request is used to describe an request to a server.
         :param start_response: Represents a response from a web request."""
         if not self.router:
-            start_response('200 OK', [('Content-Type', 'text/html')])
-            return ["Welcome to Retic!".encode("utf8")]
+            if environ.get('PATH_INFO') == '/':
+                _status = '200 OK'
+                _message = "Welcome to Retic!"
+            else:
+                _status = '404 Not found'
+                _message = "error: The HTTP method {0} doesn't exist".format(
+                    environ.get('REQUEST_METHOD')
+                )
+            start_response(_status, [('Content-Type', 'text/html')])
+            return [_message.encode("utf8")]
         else:
             return self.router.main(environ, start_response)
 
