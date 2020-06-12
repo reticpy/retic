@@ -11,7 +11,8 @@ from retic.utils.general import get_body_request
 from retic.utils.json import parse
 
 PATHS = [
-    ("/")
+    ("/"),
+    ("/endpoint"),
 ]
 PATHS_SLASH = [
     ("/examples/")
@@ -105,6 +106,9 @@ def test_request_with_body_raw(app_routes, path):
     assert _body.get("value") == "{'text': 'example'}"
 
 
+"""Test about Redirects"""
+
+
 @pytest.mark.lib_hooks
 @pytest.mark.parametrize("path", PATHS_SLASH)
 def test_request_with_slash(app_routes, path):
@@ -113,3 +117,19 @@ def test_request_with_slash(app_routes, path):
     """Redirect to path without slash in the final"""
     _body = get_body_request(app_iter)
     assert status.upper() == "308 PERMANENT REDIRECT"
+
+
+"""Test about main App"""
+
+
+@pytest.mark.lib_hooks
+@pytest.mark.parametrize("path", PATHS_SLASH)
+def test_request_clear_app(app_routes, path):
+    """get a request when the app has routes"""
+    app_iter, status, headers = app_routes.get(path)
+    assert status.upper() == "200 OK"
+    """we clear the information of App"""
+    app_routes.application.clear()
+    """get a request when the app hasn't routes"""
+    app_iter, status, headers = app_routes.get(path)
+    assert status.upper() == "404 NOT FOUND"
