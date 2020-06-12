@@ -5,14 +5,17 @@ from werkzeug.test import Client
 import pytest
 
 # Retic
-from retic import App, Router
+from retic import App as app, Router
 from retic.lib.hooks.system.env import env
 from retic.utils.general import get_body_request
 from retic.utils.json import parse
 
+
 PATHS = [
     ("/"),
-    ("/endpoint"),
+]
+PATHS_ROUTES = [
+    ("/endpoint")
 ]
 PATHS_SLASH = [
     ("/examples/")
@@ -28,16 +31,31 @@ CONTROLLERS = [
 @pytest.fixture
 def app_routes():
     """Clear the app"""
-    App.clear()
+    app.clear()
     """Returns an app client with routes"""
     _router = Router()
-    for _path in PATHS+PATHS_SLASH:
+    for _path in PATHS+PATHS_SLASH+PATHS_ROUTES:
         """define a new path using the response from a path definition"""
         _router \
             .get(_path, *CONTROLLERS) \
             .post(_path, *CONTROLLERS)
-    App.use(_router)
-    return Client(App.application)
+    app.use(_router)
+    return Client(app.application)
+
+
+@pytest.fixture
+def app_without_client():
+    """Clear the app"""
+    app.clear()
+    """Returns an app client with routes"""
+    _router = Router()
+    for _path in PATHS+PATHS_SLASH+PATHS_ROUTES:
+        """define a new path using the response from a path definition"""
+        _router \
+            .get(_path, *CONTROLLERS) \
+            .post(_path, *CONTROLLERS)
+    app.use(_router)
+    return app
 
 
 """Test about Body"""
@@ -117,19 +135,3 @@ def test_request_with_slash(app_routes, path):
     """Redirect to path without slash in the final"""
     _body = get_body_request(app_iter)
     assert status.upper() == "308 PERMANENT REDIRECT"
-
-
-"""Test about main App"""
-
-
-@pytest.mark.lib_hooks
-@pytest.mark.parametrize("path", PATHS_SLASH)
-def test_request_clear_app(app_routes, path):
-    """get a request when the app has routes"""
-    app_iter, status, headers = app_routes.get(path)
-    assert status.upper() == "200 OK"
-    """we clear the information of App"""
-    app_routes.application.clear()
-    """get a request when the app hasn't routes"""
-    app_iter, status, headers = app_routes.get(path)
-    assert status.upper() == "404 NOT FOUND"

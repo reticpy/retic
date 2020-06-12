@@ -5,7 +5,7 @@ from werkzeug.test import Client
 import pytest
 
 # Retic
-from retic import App, Router
+from retic import App as app, Router
 
 # Utils
 from retic.utils.general import get_body_request
@@ -20,17 +20,17 @@ CONTROLLERS = [
 
 
 @pytest.fixture
-def app():
+def app_client():
     """Clear the app"""
-    App.clear()
+    app.clear()
     """Returns an app client without routes"""
-    return Client(App.application)
+    return Client(app.application)
 
 
 @pytest.fixture
 def app_routes():
     """Clear the app"""
-    App.clear()
+    app.clear()
     """Returns an app client with routes"""
     _router = Router()
     for _path in PATHS:
@@ -38,15 +38,15 @@ def app_routes():
         _router \
             .get(_path, *CONTROLLERS) \
             .get("/", *CONTROLLERS)
-    App.use(_router)
-    return Client(App.application)
+    app.use(_router)
+    return Client(app.application)
 
 
 @pytest.mark.lib_hooks
 @pytest.mark.parametrize("path", PATHS)
-def test_response_without_method(app, path):
+def test_response_without_method(app_client, path):
     """we include a valid route and controllers"""
-    app_iter, status, headers = app.get(path)
+    app_iter, status, headers = app_client.get(path)
     assert status.upper() == '404 NOT FOUND', "A status 404 is necesary, but a status {} was got from the request".format(
         status)
 
