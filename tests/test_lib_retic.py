@@ -76,6 +76,18 @@ def test_config_from_object():
     assert app.config.get("APP_LANG") == "en_US", \
         "The value from the configuration item is different to value saved"
 
+@pytest.mark.lib
+def test_config_clear():
+    """Set the settings from an object"""
+    app.config.from_object({u'APP_LANG': "en_US"})
+    """check if this value exists"""
+    assert app.config.get("APP_LANG") == "en_US", \
+        "The value from the configuration item is different to value saved"
+    """Clear the configuration"""
+    app.config.clear()
+    """Check that the variables aren't exists"""
+    assert app.config.get("APP_LANG") == None
+
 
 """Test about main App"""
 
