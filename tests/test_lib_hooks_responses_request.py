@@ -13,6 +13,9 @@ from retic.utils.json import parse
 PATHS = [
     ("/")
 ]
+PATHS_SLASH = [
+    ("/examples/")
+]
 
 CONTROLLERS = [
     # Check if the value is like as bytes, return string
@@ -27,13 +30,16 @@ def app_routes():
     App.clear()
     """Returns an app client with routes"""
     _router = Router()
-    for _path in PATHS:
+    for _path in PATHS+PATHS_SLASH:
         """define a new path using the response from a path definition"""
         _router \
             .get(_path, *CONTROLLERS) \
             .post(_path, *CONTROLLERS)
     App.use(_router)
     return Client(App.application)
+
+
+"""Test about Body"""
 
 
 @pytest.mark.lib_hooks
@@ -97,3 +103,13 @@ def test_request_with_body_raw(app_routes, path):
     assert status.upper() == "200 OK"
     assert _body.get("type") == "raw"
     assert _body.get("value") == "{'text': 'example'}"
+
+
+@pytest.mark.lib_hooks
+@pytest.mark.parametrize("path", PATHS_SLASH)
+def test_request_with_slash(app_routes, path):
+    """we include a valid route and controllers"""
+    app_iter, status, headers = app_routes.get(path)
+    """Redirect to path without slash in the final"""
+    _body = get_body_request(app_iter)
+    assert status.upper() == "308 PERMANENT REDIRECT"
