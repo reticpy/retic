@@ -9,7 +9,9 @@ class Body(object):
     """Class for the body from a request"""
 
     def __init__(self, type, value):
+        """Define the type of the object"""
         self.type: dict = type
+        """Value of the object"""
         self.value: dict = value
 
     @property
@@ -31,12 +33,23 @@ class Body(object):
 
 class Request(Request):
     """Initial instance of the Request Class"""
-    retic = {}
-    params = {}
+
+    @property
+    def retic(self):
+        return self.__retic
+
+    @retic.setter
+    def retic(self, value):
+        if hasattr(self, "retic"):
+            raise TypeError(
+                "error: You can't assign the settings of this ways. if you want to assign from an object please use to *req.retic.clear()* function"
+            )
+        self.__retic = value
 
     def config(self):
         """Set another attributes to Instance"""
         self.body: Body = self._get_body()
+        self.retic = self.params = {}
         return self
 
     def param(self, key: str, default_value: str = None):  # str
@@ -115,7 +128,7 @@ class Request(Request):
                     or _content_type.startswith('application/x-www-form-urlencoded'):
                 _type = 'form'
                 _value = self.form
-            elif _content_type.startswith('text/plain'):
+            elif _content_type.startswith('text/'):
                 _type = "text"
                 _value = self.get_data().decode("utf-8")
             else:

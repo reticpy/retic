@@ -36,8 +36,8 @@ def test_default(http_method: httpmethod.HttpMethod, path):
 @pytest.mark.lib_router
 @pytest.mark.parametrize("path", PATHS)
 def test_default_exception(http_method: httpmethod.HttpMethod, path):
+    """we don't include a valid route, because the handles aren't passed"""
     with pytest.raises(ValueError) as excinfo:
-        # we don't include a valid route, because the handles aren't passed
         _default = http_method.default(
             path
         )
@@ -48,8 +48,8 @@ def test_default_exception(http_method: httpmethod.HttpMethod, path):
 @pytest.mark.lib_router
 @pytest.mark.parametrize("path", PATHS)
 def test_default_type_error(http_method: httpmethod.HttpMethod, path):
+    """we don't include a valid path, because is necesary a string for the path"""
     with pytest.raises(TypeError) as excinfo:
-        # we don't include a valid path, because is necesary a string for the path
         _default = http_method.default(
             123,
             *CONTROLLERS

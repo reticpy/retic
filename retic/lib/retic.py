@@ -136,6 +136,12 @@ class App(object):
         else:
             return self.router.main(environ, start_response)
 
+    def clear(self):
+        """Clear the App"""
+        self.router: Router = None
+        self.config.clear()
+        self.apps.clear()
+
     def use(self, item: any, name: str = ""):
         """method of configuring the middleware.
 
