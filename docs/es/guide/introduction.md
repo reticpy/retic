@@ -17,6 +17,8 @@ Está diseñado para atacar las siguientes desventajas en el desarrollo de softw
 
 Retic está basado en **express.js**, es simple, rápido y fácil de utilizar. Nuestra visión es qué no necesitas una carrera de informatica para crear soluciones para ti y la sociedad, **"todo es posible en la medida que tú creas que es posible"** - *Arturo Orantes*
 
+### Inicio rápido
+
 * [Configure su entorno local para el desarrollo.][docs_installation]
   
 * Conozca los conceptos fundamentales de diseño y la arquitectura de las aplicaciones retictivas.
