@@ -2,21 +2,20 @@
 title: Instalación
 type: guide
 order: 1
-retic_version: 1.0.0
+retic_version: 0.1.0
 ---
 
 # Instalación
 
-Instalar y actualizar usando [pip](#instalar-pip):
+Instalar y actualizar usando pip y un [entorno virutal](#instalar-pip):
 
 ```sh
 # Obtener la última versión estable de Retic
 $ pip install -U retic
 ```
 
----
 
-Última versión estable: ``0.0.4``.
+Última versión estable: ``0.1.0``.
 
 Las notas de lanzamiento detalladas para cada versión están disponibles en [GitHub][repository_releases].
 
