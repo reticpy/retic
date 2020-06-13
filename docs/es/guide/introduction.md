@@ -1,7 +1,7 @@
 ---
 title: Introducción
 type: guide
-order: 2
+order: 1
 ---
 
 ## ¿Qué es Retic?
