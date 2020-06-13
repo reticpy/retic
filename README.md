@@ -25,7 +25,7 @@ router = Router()
 router \
     .get("/", lambda req, res, next: res.ok({"msg": "Welcome to Retic ^^"})) \
     .get("/example", lambda req, res: res.ok({"msg": "Simple rest api example in Python"})) \
-    .get("/withoutres", lambda req, res: print("REST api Python example 🐍"))
+    .get("/withoutres", lambda req, res: print("REST api Python example"))
 
 app.use(router)
 
@@ -56,4 +56,4 @@ Do you want to send an error, contribute some code or improve the documentation?
 [LICENSE]: https://github.com/reticpy/retic/blob/dev_initial_app/LICENSE
 [changelog]: https://github.com/reticpy/retic/blob/dev_initial_app/CHANGELOG.md
 [contribute]: https://github.com/reticpy/retic/blob/dev_initial_app/CONTRIBUTING.md
-[hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-hel
+[hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-help
