@@ -17,13 +17,13 @@ Está diseñado para atacar las siguientes desventajas en el desarrollo de softw
 
 Retic está basado en **express.js**, es simple, rápido y fácil de utilizar. Nuestra visión es qué no necesitas una carrera de informatica para crear soluciones para ti y la sociedad, **"todo es posible en la medida que tú creas que es posible"** - *Arturo Orantes*
 
-* [Primeros pasos][docs_installation]: Configure su entorno local para el desarrollo.
+* [Configure su entorno local para el desarrollo.][docs_installation]
   
-* **Aprende y explora:** Conozca los conceptos fundamentales de diseño y la arquitectura de las aplicaciones retictivas.
+* Conozca los conceptos fundamentales de diseño y la arquitectura de las aplicaciones retictivas.
 
-* **Echa un vistazo:** Revisa y trabaja sobre un proyecto listo para utilizar.
+* Revisa y trabaja sobre un proyecto listo para utilizar.
   
-* **Hello world:** Trabaja en un tutorial completo para crear tu primera aplicación.
+* Trabaja en un tutorial completo para crear tu primera aplicación.
 
 [wiki_retic]: https://es.wikipedia.org/wiki/Malayopython_reticulatus
 [docs_installation]:https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/installation.md
