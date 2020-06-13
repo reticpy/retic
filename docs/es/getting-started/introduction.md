@@ -28,4 +28,4 @@ Retic está basado en **express.js**, es simple, rápido y fácil de utilizar. N
 * Trabaja en un tutorial completo para crear tu primera aplicación.
 
 [wiki_retic]: https://es.wikipedia.org/wiki/Malayopython_reticulatus
-[docs_installation]:https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/installation.md
+[docs_installation]:./installation.md
