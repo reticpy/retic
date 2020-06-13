@@ -40,7 +40,7 @@ app.listen(
 ## Quickstart
 
 * [Introduction to the Retic Docs][docs_introduction]
-  
+
 * [Learn about the latest improvements][changelog].
 
 ## Want to help?
