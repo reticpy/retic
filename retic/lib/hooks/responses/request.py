@@ -2,7 +2,7 @@
 from werkzeug.wrappers import Request
 
 # Utils
-from retic.utils.json import parse
+from retic.services.json import parse
 
 
 class Body(object):

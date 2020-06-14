@@ -2,7 +2,7 @@
 from json import dumps, loads
 
 # Retic
-from retic.utils.exceptions import get_file_error_exception
+from retic.services.exceptions import get_file_error_exception
 
 
 def jsonify(object):

@@ -2,7 +2,7 @@
 from environs import Env
 
 # Utils
-import retic.utils.msgfmt as msgfmt
+import retic.services.msgfmt as msgfmt
 
 env = Env()
 env.read_env()

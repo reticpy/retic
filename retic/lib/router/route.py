@@ -1,5 +1,5 @@
 # Utils
-from retic.utils.general import get_number_parameters
+from retic.services.general import get_number_parameters
 
 
 class Route(object):
