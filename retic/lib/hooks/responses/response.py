@@ -55,7 +55,7 @@ class Response(Response):
 
     def ok(self, data: dict = None):  # Response
         """This method is used to send a *200 OK* response to the client."""
-        return self._send_by_status(200, jsonify(data) if data else None)
+        return self._send_by_status(200, data if data else None)
 
     def server_error(self, content=""):
         """This method is used to send a *500 Server Error* response to the client,
@@ -66,7 +66,7 @@ class Response(Response):
         """Send a string response in a non-JSON format (XML, CSV, plain text, etc.).
 
         This method is used in the underlying implementation of most other terminal response methods."""
-        return self.send_string(jsonify(data) if data else {})
+        return self.send_string(data if data else {})
 
     def set_headers(self, headers: dict, value: str = None):  # self
         """Sets the specified response header to the specified value.
@@ -85,9 +85,9 @@ class Response(Response):
         self.status_code = code
         return self
 
-    def send_string(self, data_str: str = ""):  # Response
+    def send_string(self, data: str = ""):  # Response
         """Send a response to http requests"""
-        self.set_data(data_str)
+        self.set_data(jsonify(data))
         return self._set_response(self(self._environ, self._start_response))
 
     def redirect(self, new_url):  # Response
