@@ -60,8 +60,8 @@ class Request(Request):
         """
         if key in self.params:
             return self.params.get(key)
-        elif key in self.body:
-            return self.body.get(key)
+        elif key in self.body.value:
+            return self.body.value.get(key)
         elif key in self.args:
             return self.args.get(key)
         return self.retic.get(key, default_value)
@@ -97,7 +97,7 @@ class Request(Request):
 
         It includes parameters parsed from the URL path, the request body,
         and the query string, in that order."""
-        return {**self.params, **self.body, **self.args, **self.retic}
+        return {**self.params, **self.body.value, **self.args, **self.retic}
 
     def _get_body(self):
         """Get the body for a request from to client. If this one is not exists, return

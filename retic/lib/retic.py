@@ -39,7 +39,7 @@ class Config(object):
             )
         self.__config = value
 
-    def get(self, key, default_value=None):
+    def get(self, key, default_value=None, callback=None):
         """Returns the value of the parameter with the specified name.
         If the variable doesn't exist in the configuration values, this search
         in the environment variables and return a string. If you need a specific
@@ -47,8 +47,12 @@ class Config(object):
 
         :param key: Name of the variable to find
         :param default_value: Value of the variable if this one doesn't exist
+        :param callback: Function that is executed after getting the value
         """
-        return self.__config.get(key, self.env(key, default_value))
+        _value = self.__config.get(key, self.env(key, default_value))
+        if not callback:
+            return _value
+        return callback(_value)
 
     def set(self, key, value):
         """Set a value in the settings of the app.
@@ -87,7 +91,7 @@ class App(object):
         self.router: Router = None
         self.apps = {}
         self.env: Env = env
-        self.config = Config(env)
+        self.config: Config = Config(env)
 
     @property
     def config(self):
