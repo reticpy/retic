@@ -1,5 +1,5 @@
 class Next(object):
-    def __init__(self, req: any, res: any, layer: any):
+    def __init__(self, req: any, res: any, layer: any, middleware: list):
         """Initial instance of the Next Class
 
         :param req: Request is used to describe an request to a server.
@@ -7,7 +7,8 @@ class Next(object):
         :param layer: Layer that contains a route instance for a specific path
         """
         self.layer = layer
-        self.stack = layer.route.stack.copy()
+        """Add all middlewares available"""
+        self.stack = middleware.copy()+layer.route.stack.copy()
         self.req = req
         self.res = res
 

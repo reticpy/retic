@@ -19,7 +19,10 @@ class Route(object):
         :param next: It must call next() to pass control to the next middleware function
         """
         _handles = next.stack
-        assert _handles, "error: Next function is invalid, the function has not more controllers"
+        """Check if the next function exists"""
+        if not _handles:
+            return
+        # assert _handles, "error: Next function is invalid, the function has not more controllers"
 
         _fn = _handles.pop(0).handle
         _num_param = get_number_parameters(_fn)

@@ -26,7 +26,7 @@ class Response(Response):
         self._start_response = start_response
         self._set_response = set_response
         # set default headers
-        self.set_headers('content-type', "application/json")
+        self.set_headers('content-type', "application/json")        
         return self
 
     def bad_request(self, content=""):  # Response

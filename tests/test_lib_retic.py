@@ -45,14 +45,14 @@ def test_config_attribute():
     app.config.clear()
     """Check that the variables aren't exists"""
     assert app.config.get("APP_LANG") == None
-    assert app.config.get("APP_HOST") == None
+    assert app.config.get("APP_HOSTNAME") == None
     """we include a basic setting to app"""
     app.config.set("APP_LANG", "en_US")
-    app.config.set("APP_HOST", "localhost")
+    app.config.set("APP_HOSTNAME", "localhost")
     """Check if this value was saved in the object"""
     assert app.config.get("APP_LANG") == "en_US", \
         "The value from the configuration item is different to value saved"
-    assert app.config.get("APP_HOST") == "localhost", \
+    assert app.config.get("APP_HOSTNAME") == "localhost", \
         "The value from the configuration item is different to value saved"
 
 
