@@ -16,6 +16,6 @@ def success_response_service(data=None, msg=""):
         u'msg': msg,
         u'data': data
     }
-    if not data:
+    if data is None:
         del _data_response["data"]
     return _data_response

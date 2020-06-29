@@ -15,6 +15,9 @@ def jsonify(object):
         # if is none, return a empty string
         if not object:
             return ""
+        # if is a bytesm return the same value
+        elif isinstance(object, bytes):
+            return object
         # if is a string, return the same value
         elif isinstance(object, str):
             return object
