@@ -8,7 +8,7 @@ import pytest
 from retic import App as app, Router
 
 # Utils
-from retic.utils.general import get_body_request
+from retic.services.general import get_body_request
 
 PATHS = [
     ("/withoutress")

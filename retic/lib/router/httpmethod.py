@@ -5,7 +5,7 @@ import traceback
 import sys
 
 # Utils
-from retic.utils.exceptions import get_file_error_exception
+from retic.services.exceptions import get_file_error_exception
 
 
 class HttpMethod(object):

@@ -7,8 +7,8 @@ import pytest
 # Retic
 from retic import App as app, Router
 from retic.lib.hooks.system.env import env
-from retic.utils.general import get_body_request
-from retic.utils.json import parse
+from retic.services.general import get_body_request
+from retic.services.json import parse
 
 
 PATHS = [

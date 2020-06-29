@@ -1,6 +1,6 @@
 # Utils
-from retic.utils.exceptions import get_file_error_exception
-from retic.utils.general import path_regexp
+from retic.services.exceptions import get_file_error_exception
+from retic.services.general import path_regexp
 
 
 class Layer(object):

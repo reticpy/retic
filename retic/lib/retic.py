@@ -7,79 +7,8 @@ from environs import Env
 # Retic
 from retic.lib.router import Router
 
-APP_HOST = "127.0.0.1"
+APP_HOSTNAME = "127.0.0.1"
 APP_PORT = 1801
-
-
-class Config(object):
-    def __init__(self, env):
-        """Variables from the environment"""
-        self.env = env
-        """variables from user settings"""
-        self.config = {}
-
-    @property
-    def env(self):
-        return self.__env
-
-    @env.setter
-    def env(self, value):
-        self.__env = value
-
-    @property
-    def config(self):
-        return self.__config
-
-    @config.setter
-    def config(self, value):
-        """If the type of the value is not dict, it is not allowed"""
-        if not isinstance(value, dict):
-            raise TypeError(
-                "error: A settings dictionary of type dict is necesary"
-            )
-        self.__config = value
-
-    def get(self, key, default_value=None):
-        """Returns the value of the parameter with the specified name.
-        If the variable doesn't exist in the configuration values, this search
-        in the environment variables and return a string. If you need a specific
-        type of the environment variable, you need to use *app.env.int("variable_name")* for example.
-
-        :param key: Name of the variable to find
-        :param default_value: Value of the variable if this one doesn't exist
-        """
-        return self.__config.get(key, self.env(key, default_value))
-
-    def set(self, key, value):
-        """Set a value in the settings of the app.
-
-        Please note that names are not case sensitive.
-
-        :param key: Name of the variable to set
-        :param value: Value of the variable
-        """
-        self.__config.setdefault(key, value)
-
-    def from_object(self, settings):
-        """Set settings in based a dictionary, for example, if you want to
-        set a additional configuration you nedd pass:
-
-        ``app.config.from_object( { u'port': 8080 } )``
-
-        :param settings: An object of type dictionary that contains the configurations
-        """
-        if not isinstance(settings, dict):
-            raise TypeError(
-                "error: A settings dictionary of type dict is necesary"
-            )
-        self.__config = {**self.__config, **settings}
-
-    def clear(self):
-        """Clear the actual settings, however, the settings from the environment 
-        variables isn't clear. You can search variables in the environment with the function
-        ``app.config.get("environment_name")``
-        """
-        self.__config.clear()
 
 
 class App(object):
@@ -87,7 +16,7 @@ class App(object):
         self.router: Router = None
         self.apps = {}
         self.env: Env = env
-        self.config = Config(env)
+        self.config: Config = Config(env)
 
     @property
     def config(self):
@@ -159,7 +88,7 @@ class App(object):
 
     def listen(
         self,
-        hostname=APP_HOST,
+        hostname=APP_HOSTNAME,
         port=APP_PORT,
         application=None,
         use_reloader=False,
@@ -236,3 +165,78 @@ class App(object):
             passthrough_errors=passthrough_errors,
             ssl_context=ssl_context
         )
+
+
+class Config(object):
+    def __init__(self, env):
+        """Variables from the environment"""
+        self.env = env
+        """variables from user settings"""
+        self.config = {}
+
+    @property
+    def env(self):
+        return self.__env
+
+    @env.setter
+    def env(self, value):
+        self.__env = value
+
+    @property
+    def config(self):
+        return self.__config
+
+    @config.setter
+    def config(self, value):
+        """If the type of the value is not dict, it is not allowed"""
+        if not isinstance(value, dict):
+            raise TypeError(
+                "error: A settings dictionary of type dict is necesary"
+            )
+        self.__config = value
+
+    def get(self, key, default_value=None, callback=None):
+        """Returns the value of the parameter with the specified name.
+        If the variable doesn't exist in the configuration values, this search
+        in the environment variables and return a string. If you need a specific
+        type of the environment variable, you need to use *app.env.int("variable_name")* for example.
+
+        :param key: Name of the variable to find
+        :param default_value: Value of the variable if this one doesn't exist
+        :param callback: Function that is executed after getting the value
+        """
+        _value = self.__config.get(key, self.env(key, default_value))
+        if not callback:
+            return _value
+        return callback(_value)
+
+    def set(self, key, value):
+        """Set a value in the settings of the app.
+
+        Please note that names are not case sensitive.
+
+        :param key: Name of the variable to set
+        :param value: Value of the variable
+        """
+        self.__config.setdefault(key, value)
+
+    def from_object(self, settings):
+        """Set settings in based a dictionary, for example, if you want to
+        set a additional configuration you nedd pass:
+
+        ``app.config.from_object( { u'port': 8080 } )``
+
+        :param settings: An object of type dictionary that contains the configurations
+        """
+        if not isinstance(settings, dict):
+            raise TypeError(
+                "error: A settings dictionary of type dict is necesary"
+            )
+        self.__config = {**self.__config, **settings}
+
+    def clear(self):
+        """Clear the actual settings, however, the settings from the environment 
+        variables isn't clear. You can search variables in the environment with the function
+        ``app.config.get("environment_name")``
+        """
+        self.__config.clear()

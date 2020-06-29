@@ -2,7 +2,7 @@
 from werkzeug.wrappers import Request
 
 # Utils
-from retic.utils.json import parse
+from retic.services.json import parse
 
 
 class Body(object):
@@ -52,7 +52,7 @@ class Request(Request):
         self.retic = self.params = {}
         return self
 
-    def param(self, key: str, default_value: str = None):  # str
+    def param(self, key: str, default_value=None):
         """Returns the value of the parameter with the specified name.
 
         :param key: Name of the variable to set
@@ -60,13 +60,13 @@ class Request(Request):
         """
         if key in self.params:
             return self.params.get(key)
-        elif key in self.body:
-            return self.body.get(key)
+        elif key in self.body.value:
+            return self.body.value.get(key)
         elif key in self.args:
             return self.args.get(key)
         return self.retic.get(key, default_value)
 
-    def set(self, key: str, value: any = None):  # str
+    def set(self, key: str, value: any = None):
         """Set a value in the requests (req).
 
         Please note that names are not case sensitive.
@@ -79,7 +79,7 @@ class Request(Request):
         except KeyError:
             return None
 
-    def get(self, key: str):  # str
+    def get(self, key: str):
         """Returns the value of the request (req).
 
         Please note that names are not case sensitive.
@@ -91,13 +91,13 @@ class Request(Request):
         except KeyError:
             return None
 
-    def all_params(self):  # dict
+    def all_params(self):
         """Returns the value of all the parameters sent in the request,
         combined into a single dictionary.
 
         It includes parameters parsed from the URL path, the request body,
         and the query string, in that order."""
-        return {**self.params, **self.body, **self.args, **self.retic}
+        return {**self.params, **self.body.value, **self.args, **self.retic}
 
     def _get_body(self):
         """Get the body for a request from to client. If this one is not exists, return

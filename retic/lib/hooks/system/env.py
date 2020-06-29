@@ -2,7 +2,7 @@
 from environs import Env
 
 # Utils
-import retic.utils.msgfmt as msgfmt
+import retic.services.msgfmt as msgfmt
 
 env = Env()
 env.read_env()
@@ -17,4 +17,4 @@ def build_api(env):
     msgfmt.make(_locale, env.str("APP_LANG_DOMAIN", "base"))
 
 
-build_api(env)
+# build_api(env)

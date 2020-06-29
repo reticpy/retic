@@ -25,7 +25,7 @@ router = Router()
 router \
     .get("/", lambda req, res, next: res.ok({"msg": "Welcome to Retic ^^"})) \
     .get("/example", lambda req, res: res.ok({"msg": "Simple rest api example in Python"})) \
-    .get("/withoutres", lambda req, res: print("REST api Python example 🐍"))
+    .get("/withoutres", lambda req, res: print("REST api Python example"))
 
 app.use(router)
 

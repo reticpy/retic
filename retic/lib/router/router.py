@@ -39,6 +39,15 @@ class Router(object):
         self.rules = {
             "strict_slashes": strict_slashes
         }
+        self.middlewares = []
+
+    @property
+    def middlewares(self):
+        return self.__middlewares
+
+    @middlewares.setter
+    def middlewares(self, value):
+        self.__middlewares = value
 
     @property
     def result(self):
@@ -63,6 +72,16 @@ class Router(object):
         except Exception as e:
             return Response(str(e))(environ, start_response)
 
+    def use(self, fn):
+        """Use to add a middleware that is execute for all routes
+
+        :param fn: Route dispatch function for the request
+        """
+        """Set middle to routes"""
+        self.middlewares.append(
+            self._set_handler_to_layer(fn)
+        )
+
     def route(self, path: str, method: str, handlers: list):  # Route
         """Create a Route instance and adds this route to specific controller
         of a HTTP method in a Router.
@@ -73,16 +92,10 @@ class Router(object):
         """
         _route = Route(path)
         for _handler in handlers:
-            assert _handler, "error: The route has the next format: METHOD(path, [...handlers functions])"
-            layer = Layer(
-                "/",
-                {
-                    u"strict": False,
-                    u"end": True
-                },
-                _handler
+            """Set handler to route"""
+            _route.stack.append(
+                self._set_handler_to_layer(_handler)
             )
-            _route.stack.append(layer)
         _layer = Layer(
             path,
             {
@@ -94,6 +107,20 @@ class Router(object):
         _layer.route = _route
         self.methods[method].append(_layer)
         return _route
+
+    def _set_handler_to_layer(self, handler):
+        assert handler, "error: The route has the next format: METHOD(path, [...handlers functions])"
+        assert callable(
+            handler), "error: The handler or middleware is not a valid function"
+        _layer = Layer(
+            "/",
+            {
+                u"strict": False,
+                u"end": True
+            },
+            handler
+        )
+        return _layer
 
     def _set_response(self, item: dict):
         """Response function for the request."""
@@ -148,8 +175,8 @@ class Router(object):
             # set the params to request
             req.params = _layer.params
             # return the handle logic
-            return _layer.handle_request(req, res, Next(req, res, _layer))
-        except ValueError as e:            
+            return _layer.handle_request(req, res, Next(req, res, _layer, self.middlewares))
+        except ValueError as e:
             return res.redirect(str(e))
         except KeyError as e:
             return res.not_found(str(e))
