@@ -6,24 +6,24 @@ Una aplicación se define por **rutas y servicios**. Retic provee la clase ``Rou
 
 Retic recomienda la siguiente estructura de directorios para una fácil escalabilidad y mantenibilidad de la aplicación.
 
-```
+```sh
 retic-example
 │
 └───controllers
 │   │   controller1.py
 │   │   controller2.py
 │   │   ...
-│   
+│
 └───models
 │   │   __init__.py
 │   │   model1.py
 |   │   model2.py
 |   │   ...
-│   
+│
 └───routes
 │   │   routes.py
 |   │   ...
-│   
+│
 └───services
 │   │
 │   └───service1
@@ -31,7 +31,7 @@ retic-example
 │       │   service2.py
 │       │   ...
 |   │   ...
-│   
+│
 │   app.py
 │   requirements.txt
 ```
@@ -117,7 +117,11 @@ Para más detalles visita la [guía de enrutamiento][docs_routing].
 Para más detalles visita la [guía de utilerias][docs_utils].
 
 [firefox_http_methods]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+
 [wiki_crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
 [docs_routing]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/routing.md
+
 [docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/request.md
+
 [docs_utils]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/utils.md

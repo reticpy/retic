@@ -4,8 +4,6 @@ type: guide
 order: 2
 ---
 
-# Instalación
-
 Se recomienda utilizar un [entorno virutal](#crear-entorno-virtual-en-python) para trabajar.
 
 ```sh
@@ -144,6 +142,7 @@ python -m pip install --upgrade pip
 python3 -m pip install --upgrade pip
 
 ```
+
 #### Instalar Retic
 
 ```sh
@@ -179,11 +178,14 @@ python3 app.py
 
 ```
 
-Listo, has creado tu primera API. Visita el siguiente enlace http://localhost:1801/ para ver el resultado.
+Listo, has creado tu primera API. Visita el siguiente enlace <http://localhost:1801/> para ver el resultado.
 
 ![alt text](https://github.com/reticpy/retic/raw/dev_documentation/docs/es/images/api_rest_app.png "API REST")
 
 [repository_releases]: https://github.com/reticpy/retic/releases
+
 [pip_download]: https://bootstrap.pypa.io/get-pip.py
+
 [virtualenv_official]: https://docs.python.org/3/library/venv.html#module-venv
+
 [python_downloads]: https://www.python.org/downloads/

@@ -46,25 +46,27 @@ class Request(Request):
             )
         self.__retic = value
 
-    def config(self):
+    def _config(self):
         """Set another attributes to Instance"""
         self.body: Body = self._get_body()
         self.retic = self.params = {}
         return self
 
-    def param(self, key: str, default_value=None):
+    def param(self, key: str, default_value: any = None):
         """Returns the value of the parameter with the specified name.
 
-        :param key: Name of the variable to set
-        :param default_value: Value of the variable if this one doesn't exist
+        req.param(...) finds in the URL path, body, and query string (in that order) 
+        for the specified parameter. If no parameter value exists anywhere in the 
+        request with the given name, it returns None or the optional default value if specified.
+
+        :param key: Name of the parameter to find
+        :param default_value: Value of the parameter if this one doesn't exist
         """
         if key in self.params:
             return self.params.get(key)
         elif key in self.body.value:
             return self.body.value.get(key)
-        elif key in self.args:
-            return self.args.get(key)
-        return self.retic.get(key, default_value)
+        return self.args.get(key, default_value)
 
     def set(self, key: str, value: any = None):
         """Set a value in the requests (req).
@@ -74,29 +76,26 @@ class Request(Request):
         :param key: Name of the variable to set
         :param value: Value of the variable
         """
-        try:
-            return self.retic.setdefault(key.lower(), value)
-        except KeyError:
-            return None
+        return self.retic.setdefault(key.lower(), value)
 
-    def get(self, key: str):
-        """Returns the value of the request (req).
-
-        Please note that names are not case sensitive.
+    def get(self, key: str, default_value: any = None):
+        """Returns the value of an object in retic with a specific name. 
+        Please note that names are not case sensitive. 
+        
+        If the value does not exist in the request, it returns None or 
+        the default value specified by default.
 
         :param key: Name of the variable to find
+        :param default_value: Value of the parameter if this one doesn't exist
         """
-        try:
-            return self.retic.get(key.lower(), None)
-        except KeyError:
-            return None
+        return self.retic.get(key.lower(), default_value)
 
     def all_params(self):
         """Returns the value of all the parameters sent in the request,
         combined into a single dictionary.
 
         It includes parameters parsed from the URL path, the request body,
-        and the query string, in that order."""
+        and the query string, retic dict in that order."""
         return {**self.params, **self.body.value, **self.args, **self.retic}
 
     def _get_body(self):

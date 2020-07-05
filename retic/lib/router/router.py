@@ -63,8 +63,8 @@ class Router(object):
         :param environ: Request is used to describe an request to a server.
         :param start_response: Represents a response from a web request."""
         try:
-            _request = Request(environ).config()
-            _response = Response().config(environ, start_response, self._set_response)
+            _request = Request(environ)._config()
+            _response = Response()._config(environ, start_response, self._set_response)
             self._endpoint(_request, _response)
             _result = self._response_request(_response, self.result)
             self.result = None

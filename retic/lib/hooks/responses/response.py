@@ -11,7 +11,7 @@ from retic.services.json import jsonify
 
 class Response(Response):
 
-    def config(
+    def _config(
         self,
         environ,
         start_response,
