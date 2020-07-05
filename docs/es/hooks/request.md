@@ -4,8 +4,6 @@ type: hooks
 order: 1
 ---
 
-//TODO: Clase Body
-
 El objeto ``req`` es una instancia de la clase ``Request``. Representa la solicitud HTTP y tiene propiedades como parámetros, cuerpo de la solicitud, encabezados de la petición, etc.
 
 ## Propiedades de la clase Request
