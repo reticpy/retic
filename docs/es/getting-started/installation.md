@@ -7,19 +7,16 @@ retic_version: 0.1.0
 
 # Instalación
 
-Instalar y actualizar usando pip y un [entorno virutal](#crear-entorno-virtual-en-python):
+Se recomienda el uso de un [entorno virutal](#crear-entorno-virtual-en-python) para trabajar.
 
 ```sh
 # Obtener la última versión estable de Retic
-(venv) $ pip install -U retic
+pip install -U retic
 ```
-
-
-Última versión estable: ``0.1.0``.
 
 Las notas de lanzamiento detalladas para cada versión están disponibles en [GitHub][repository_releases].
 
-Se recomienda utilizar la última versión de [Python 3][python_downloads], sin embargo, Retic es compatible con la versión 2.7 y posteriores de Python.
+Retic es compatible con la versión 2.7 de Python y superiores, sin embargo, se recomienda utilizar la última versión de [Python 3][python_downloads].
 
 ## Crear entorno virtual en Python
 
@@ -86,10 +83,10 @@ $ cd myproject
 
 # Crear entorno virtual
 # Opción 1
-$ python3 -m venv venv
+$ python -m venv venv
 
 # Opción 2
-$ python -m venv venv
+$ python3 -m venv venv
 ```
 
 ### Activar un entorno virtual
@@ -116,6 +113,16 @@ $ venv\Scripts\activate
 (venv) $ pip --version
 ```
 
+#### Actualizar paquete Pip
+
+```sh
+# Actualizar el paquete pip a la última versión
+# Opción 1
+$ python -m pip install --upgrade pip
+
+# Opción 2
+$ python3 -m pip install --upgrade pip
+```
 ### Crear una aplicación inicial
 
 Crear el archivo ``app.py`` con el siguiente codigo:
@@ -131,10 +138,6 @@ app.listen()
 Inicia tu servidor con el siguiente comando:
 
 ```sh
-# Ejecutar el script de activación
-$ venv\Scripts\activate
-
-# Versión de pip instalada en el entorno virtual
 (venv) $ python app.py
 ```
 

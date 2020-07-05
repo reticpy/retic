@@ -34,7 +34,7 @@ Dónde:
   
 Los siguientes ejemplos ilustran la definición de rutas con los metodos más utilizados en un [CRUD][wiki_crud].
 
-¡Responde con ``Hola mundo``! en la página de inicio:
+Responde con ``Hola mundo`` en la página de inicio:
 
 ```python
 from retic import Router
