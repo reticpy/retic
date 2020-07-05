@@ -2,13 +2,75 @@
 
 Retic es un marco de trabajo para crear **aplicaciónes del lado del servidor**. Retic está escrito en Python. Utiliza Werkzeug como servidor y está basado en los conceptos de **express.js**.
 
-Una aplicación basicamente está definida por **rutas y servicios**. Retic provee la clase ``Router`` que ayuda a definir los puntos de acceso de la aplicación.
+Una aplicación se define por **rutas y servicios**. Retic provee la clase ``Router`` que ayuda a definir los puntos de acceso de la aplicación.
+
+Retic recomienda la siguiente estructura de directorios para una fácil escalabilidad y mantenibilidad de la aplicación.
+
+```
+retic-example
+│
+└───controllers
+│   │   controller1.py
+│   │   controller2.py
+│   │   ...
+│   
+└───models
+│   │   __init__.py
+│   │   model1.py
+|   │   model2.py
+|   │   ...
+│   
+└───routes
+│   │   routes.py
+|   │   ...
+│   
+└───services
+│   │
+│   └───service1
+│       │   service1.py
+│       │   service2.py
+│       │   ...
+|   │   ...
+│   
+│   app.py
+│   requirements.txt
+```
 
 ## Controladores
 
-Consta de Request, Response, Next...
+Los controladores están vinculados a las rutas de su aplicación, gestionan las solicitudes HTTP entrantes y deciden que servicios deben realizar el trabajo para dar una respuesta correcta al cliente.
 
-Para más detalles visita la [guía de controladores][docs_controllers].
+Por ejemplo, la ruta GET ``/files/:id`` en su aplicación podría estar vinculada a un controlador como:
+
+```python
+
+# Retic
+from retic import Request, Response, Next
+
+# Services
+import services.files.files as files
+
+def get_by_id(req: Request, res: Response, next: Next):
+    """Obtener un archivo por su ientificador"""
+
+    _file_db = files.get_by_id_db(req.param("id"))
+
+    """Revisar si se encontró el archivo, caso contrario, responder un mensaje de error"""
+    if _file_db['valid'] is False:
+        res.not_found(_file_db)
+    else:
+        res.ok(_file_db)
+
+
+```
+
+Cada controlador recibe los siguientes parametros:
+
+* [Request][docs_hooks_req]: Representa una solicitud HTTP hacia el servidor.
+  
+* Response: Representa una respuesta al cliente desde el servidor.
+  
+* Next: Permite pasar el control de la petición al siguiente controlador.
 
 ## Enrutamiento
 
@@ -57,5 +119,5 @@ Para más detalles visita la [guía de utilerias][docs_utils].
 [firefox_http_methods]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 [wiki_crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [docs_routing]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/routing.md
-[docs_controllers]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/controllers.md
+[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/request.md
 [docs_utils]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/utils.md

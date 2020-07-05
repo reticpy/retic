@@ -6,7 +6,7 @@ order: 1
 
 ## ¿Qué es Retic?
 
-Retic (basado en [reticulated python][wiki_retic]) es un framework para crear soluciones utilizando Python.
+Retic (basado en [reticulated python][wiki_retic]) es un marco de trabajo para crear soluciones en Python.
 
 Está diseñado para atacar las siguientes desventajas en el desarrollo de software:
 * **Curva de aprendizaje:** Facilitar la curva de aprendizaje en el desarrollo web.
@@ -15,7 +15,7 @@ Está diseñado para atacar las siguientes desventajas en el desarrollo de softw
   
 * **Artificial Intelligence:** Las librerias más importantes están escritas en Python.
 
-Retic está basado en **express.js**, es simple, rápido y fácil de utilizar. Nuestra visión es qué no necesitas una carrera de informatica para crear soluciones para ti y la sociedad, **"todo es posible en la medida que tú creas que es posible"** - *Arturo Orantes*
+Retic está basado en **express.js**, es simple, rápido y fácil de utilizar. Nuestra visión es qué no necesitas una carrera de informatica para crear soluciones para ti y la sociedad.
 
 ### Inicio rápido
 
