@@ -124,6 +124,7 @@ Esto generalmente significa que el agente de usuario intentó hacer algo que ell
 ```python
 
 # Retic
+from retic import Request, Response
 from retic.services.responses import error_response_service
 
 # Services
@@ -169,6 +170,9 @@ Cuando se llama manualmente desde el código de su aplicación, este método nor
 # URL de la petición HTTP
 GET: http://localhost:1801/folders/86698adcb9b711eaa7524c0082ae1a80
 
+# Retic
+from retic import Request, Response
+
 # Services
 from services.files.files as files
 
@@ -208,6 +212,9 @@ Este método se utiliza para enviar una respuesta *200 OK* al cliente.
 
 # URL de la petición HTTP
 GET: http://localhost:1801/folders/77698adcb9b711eaa7524c0082ae1a80
+
+#Retic
+from retic import Request, Response
 
 # Services
 from services.files.files as files
@@ -264,6 +271,9 @@ Este método se utiliza para enviar una respuesta *500 Server error* al cliente,
   
 ```python
 
+#Retic
+from retic import Request, Response
+
 def undefined(req: Request, res: Response):
     res.server_error(
         error_response_service("Controller is invalid.")
@@ -293,6 +303,8 @@ Este método se utiliza en la implementación subyacente de la mayoría de los o
   
 ```python
 
+#Retic
+from retic import Request, Response
 
 def say_hi(req: Request, res: Response):
 
@@ -321,6 +333,8 @@ Alternativamente, se puede pasar un objeto que contenga cabeceras para configura
   
 ```python
 
+#Retic
+from retic import Request, Response
 
 def say_hi(req: Request, res: Response):
 
@@ -350,6 +364,8 @@ Establezca el código de estado para la respuesta HTTP.
   
 ```python
 
+#Retic
+from retic import Request, Response
 
 def upload(req: Request, res: Response):
 
@@ -378,6 +394,9 @@ Redirige a otra url. Utiliza redirección permanente con código de estado 308.
 * new_utl: URL a redirigir.
   
 ```python
+
+#Retic
+from retic import Request, Response
 
 def upload(req: Request, res: Response):
 

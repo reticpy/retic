@@ -68,9 +68,9 @@ Cada controlador recibe los siguientes parametros:
 
 * [Request][docs_hooks_req]: Representa una solicitud HTTP hacia el servidor.
   
-* [Response][docs_hooks_res]:Representa una respuesta al cliente desde el servidor.
+* [Response][docs_hooks_res]: Representa una respuesta al cliente desde el servidor.
   
-* Next: Permite pasar el control de la petición al siguiente controlador.
+* [Next][docs_hooks_next]: Permite pasar el control de la petición al siguiente controlador.
 
 ## Enrutamiento
 
@@ -99,6 +99,8 @@ Los siguientes ejemplos ilustran la definición de rutas con los metodos más ut
 Responde con ``Hola mundo`` en la página de inicio:
 
 ```python
+
+# Retic
 from retic import Router
 
 router = Router()
@@ -125,5 +127,7 @@ Para más detalles visita la [guía de utilerias][docs_utils].
 [docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/request.md
 
 [docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/response.md
+
+[docs_hooks_next]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/next.md
 
 [docs_utils]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/utils.md
