@@ -116,6 +116,8 @@ Para más detalles visita la [guía de enrutamiento][docs_routing].
 
 ## Utilerias
 
+Retic cuenta con una biblioteca de servicios más utilizados para dar ayudarte en que te enfoques en lo que verdaderamente importa, la lógica de tu aplicación.
+
 Para más detalles visita la [guía de utilerias][docs_utils].
 
 [firefox_http_methods]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods

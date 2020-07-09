@@ -1,1 +1,0 @@
-qué es y para que se usa, metodos disponibles.
