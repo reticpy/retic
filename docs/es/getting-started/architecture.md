@@ -118,7 +118,7 @@ Para más detalles visita la [guía de enrutamiento][docs_routing].
 
 Retic cuenta con una biblioteca de servicios más utilizados para dar ayudarte en que te enfoques en lo que verdaderamente importa, la lógica de tu aplicación.
 
-Para más detalles visita la [guía de utilerias][docs_utils].
+Para más detalles visita la [guía de utilerias][docs_services].
 
 [firefox_http_methods]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 
@@ -132,4 +132,4 @@ Para más detalles visita la [guía de utilerias][docs_utils].
 
 [docs_hooks_next]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/next.md
 
-[docs_utils]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/utils.md
+[docs_services]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/services/services.md
