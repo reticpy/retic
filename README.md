@@ -39,11 +39,9 @@ app.listen(
 
 ## Quickstart
 
-Build a Python rest api in 5 minutes.
+* [Introduction to the Retic Docs][docs_introduction]
 
-## Changelog
-
-[Learn about the latest improvements][changelog].
+* [Learn about the latest improvements][changelog].
 
 ## Want to help?
 
@@ -56,4 +54,5 @@ Do you want to send an error, contribute some code or improve the documentation?
 [LICENSE]: https://github.com/reticpy/retic/blob/dev_initial_app/LICENSE
 [changelog]: https://github.com/reticpy/retic/blob/dev_initial_app/CHANGELOG.md
 [contribute]: https://github.com/reticpy/retic/blob/dev_initial_app/CONTRIBUTING.md
-[hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-help
+[hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-hel
+[docs_introduction]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/introduction.md

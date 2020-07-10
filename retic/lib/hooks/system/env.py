@@ -7,7 +7,7 @@ import retic.services.msgfmt as msgfmt
 env = Env()
 env.read_env()
 
-
+# TODO: Implement gettext libs
 def build_api(env):
     # load files
     msgfmt.make("retic\locale", "base")

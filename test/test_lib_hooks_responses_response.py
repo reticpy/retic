@@ -8,7 +8,7 @@ import pytest
 from retic import App as app, Router
 
 # Utils
-from retic.services.general import get_body_request
+from retic.services.general import _get_body_request
 
 PATHS = [
     ("/withoutress")
@@ -58,5 +58,5 @@ def test_response_without_method_routes(app_routes, path):
     app_iter, status, headers = app_routes.get(path)
     assert status.upper() == '200 OK', "A status 200 is necesary, but a status {} was got from the request".format(
         status)
-    assert get_body_request(
+    assert _get_body_request(
         app_iter) == '200 OK', "The default from the api when this one doesn't have routes is different to documentation"

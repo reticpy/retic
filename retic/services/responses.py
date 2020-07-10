@@ -1,7 +1,11 @@
 """Standard responses to client"""
 
-def error_response_service(msg=""):
-    """Define a error json response to send a client"""
+
+def error_response_service(msg: str = ""):
+    """Define a error json response to send a client.
+
+    :param msg: A message indicating that the request has errors.
+    """
     _data_response = {
         u'valid': False,
         u'msg': msg
@@ -9,13 +13,15 @@ def error_response_service(msg=""):
     return _data_response
 
 
-def success_response_service(data=None, msg=""):
-    """Define a success json response to send a client"""
+def success_response_service(data: any = None, msg: str = ""):
+    """Defines the structure of a response to a client request in JSON format.
+
+    :param data: Information to send to client.
+    :param msg: A message indicating that the request completed successfully.
+    """
     _data_response = {
         u'valid': True,
         u'msg': msg,
         u'data': data
     }
-    if data is None:
-        del _data_response["data"]
     return _data_response

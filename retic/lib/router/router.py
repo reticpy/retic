@@ -24,7 +24,7 @@ from retic.lib.router.layer import Layer
 
 
 class Router(object):
-    def __init__(self, strict_slashes=True):
+    def __init__(self, strict_slashes: bool = True):
         """Initial instance of the Router Class
 
         :param strict_slashe: If a rule ends with a forward slash but the matching URL does not, redirect to the ending no forward slash URL.
@@ -63,8 +63,8 @@ class Router(object):
         :param environ: Request is used to describe an request to a server.
         :param start_response: Represents a response from a web request."""
         try:
-            _request = Request(environ).config()
-            _response = Response().config(environ, start_response, self._set_response)
+            _request = Request(environ)._config()
+            _response = Response()._config(environ, start_response, self._set_response)
             self._endpoint(_request, _response)
             _result = self._response_request(_response, self.result)
             self.result = None
@@ -72,7 +72,7 @@ class Router(object):
         except Exception as e:
             return Response(str(e))(environ, start_response)
 
-    def use(self, fn):
+    def use(self, fn: function):
         """Use to add a middleware that is execute for all routes
 
         :param fn: Route dispatch function for the request

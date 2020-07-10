@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "dda2979a-1c24-4e5f-b45a-2e4e53789fb8",
+		"name": "Retic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:1801/files/123?queryparm=13344",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "cookie1=123456",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "size",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1801/files/123?queryparm=13344",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1801",
+					"path": [
+						"files",
+						"123"
+					],
+					"query": [
+						{
+							"key": "queryparm",
+							"value": "13344"
+						}
+					]
+				},
+				"description": "Request use to describe the Request Class"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

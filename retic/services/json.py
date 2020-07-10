@@ -5,7 +5,7 @@ from json import dumps, loads
 from retic.services.exceptions import get_file_error_exception
 
 
-def jsonify(object):
+def jsonify(object: any):
     """Convert a object to a JSON string.
 
     :param object: is the client response object, if the object is str, 
@@ -34,8 +34,10 @@ def jsonify(object):
         })
 
 
-def parse(str):
+def parse(content: str):
     """Deserialize (a str, bytes, or bytearray instance that contains 
     a JSON document) to a Python object.
+
+    :param content: Content of type str, bytes, or bytearray that contains a valid JSON.
     """
-    return loads(str)
+    return loads(content)

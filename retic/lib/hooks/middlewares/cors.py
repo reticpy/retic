@@ -6,11 +6,11 @@ EXPOSE_HEADERS = "Content-Type"
 
 
 def cors(
-    methods=METHODS,
-    has_credentials=HAS_CREDENTIALS,
-    origin=ORIGIN,
-    headers=HEADERS,
-    expose_headers=EXPOSE_HEADERS
+    methods: str = METHODS,
+    has_credentials: bool = HAS_CREDENTIALS,
+    origin: str = ORIGIN,
+    headers: str = HEADERS,
+    expose_headers: str = EXPOSE_HEADERS
 ):
     """CORS is an abbreviation that stands for 'Cross-Origin Resource 
     Sharing' and, as the name implies, allows sharing of resources 

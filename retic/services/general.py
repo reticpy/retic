@@ -8,7 +8,7 @@ import inspect
 import re
 
 
-def path_regexp(path, keys, options):
+def _path_regexp(path, keys, options):
     """ Return a regular expression function for a specific route
 
     :param path: Route to searching in the layer    
@@ -25,12 +25,12 @@ def path_regexp(path, keys, options):
     return _reg_exp
 
 
-def get_number_parameters(func):
+def _get_number_parameters(func):
     """Returns the number of parameters of a specific function."""
     return len(inspect.signature(func).parameters)
 
 
-def get_body_request(app_iter):
+def _get_body_request(app_iter):
     """Generate a string from response of the app requests
 
     :param app_iter: Response from the request to api
@@ -38,12 +38,12 @@ def get_body_request(app_iter):
     return (b''.join(app_iter).splitlines()[0]).decode("utf-8")
 
 
-def validate_obligate_fields(fields=None):
+def validate_obligate_fields(fields: any = None):
     """Validate if a list of obligate params are valid    
 
     :param fields: object that contains all params that are obligate, 
     these values can be arrays or simple values."""
-    
+
     '''You can use the following example:
 
     _validate = validate_obligate_fields({     
