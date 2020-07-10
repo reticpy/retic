@@ -72,7 +72,7 @@ class Router(object):
         except Exception as e:
             return Response(str(e))(environ, start_response)
 
-    def use(self, fn: function):
+    def use(self, fn):
         """Use to add a middleware that is execute for all routes
 
         :param fn: Route dispatch function for the request

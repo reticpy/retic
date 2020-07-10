@@ -34,7 +34,7 @@ Manejador de rutas de una aplicación. Crea la relación entre una ruta de acces
 
 ### Funciones de la clase Router
 
-#### use(*fn: function*)
+#### use(*fn*)
 
 Agrega una función middleware que se ejecuaráe para todas las rutas en la aplicación.
 
