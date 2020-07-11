@@ -43,6 +43,7 @@ Los controladores están vinculados a las rutas de su aplicación, gestionan las
 Por ejemplo, la ruta GET ``/files/:id`` en su aplicación podría estar vinculada a un controlador como:
 
 ```python
+# controllers\files.py
 
 # Retic
 from retic import Request, Response, Next
@@ -99,6 +100,7 @@ Los siguientes ejemplos ilustran la definición de rutas con los metodos más ut
 Responde con ``Hola mundo`` en la página de inicio:
 
 ```python
+# routes\routes.py
 
 # Retic
 from retic import Router
@@ -113,6 +115,34 @@ router \
 ```
 
 Para más detalles visita la [guía de enrutamiento][docs_routing].
+
+## Servicios
+
+Retic recomienda estructurar la aplicación de forma modular. Independizar el funcionamiento de los controladores de los servicios que realizan su acción. Fácilitando la integración con las diferentes pruebas que la aplicación requiera. Además, de minimizar el código repetido.
+
+```python
+# services\files\files.py
+
+def get_by_id_db(id):
+    """Encontrar un archivo en la base de datos en base a un identificador
+
+    :param id: Identificador en la base de datos
+    """
+
+    """Realizar la busqueda"""
+    _session = app.apps.get("db_sqlalchemy")()
+    _file = _session.query(File).filter_by(cloud=id).first()
+    _session.close()
+
+    """Validar que el archivo exista, caso contrario, mostrar un error"""
+    if not _file:
+        return error_response_service(msg="File not found.")
+    else:
+        return success_response_service(
+            data=_file.to_dict(), msg="File found."
+        )
+
+```
 
 ## Utilerias
 
