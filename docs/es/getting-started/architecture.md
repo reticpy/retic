@@ -43,6 +43,7 @@ Los controladores están vinculados a las rutas de su aplicación, gestionan las
 Por ejemplo, la ruta GET ``/files/:id`` en su aplicación podría estar vinculada a un controlador como:
 
 ```python
+
 # controllers\files.py
 
 # Retic
@@ -100,6 +101,7 @@ Los siguientes ejemplos ilustran la definición de rutas con los metodos más ut
 Responde con ``Hola mundo`` en la página de inicio:
 
 ```python
+
 # routes\routes.py
 
 # Retic
@@ -121,7 +123,28 @@ Para más detalles visita la [guía de enrutamiento][docs_routing].
 Retic recomienda estructurar la aplicación de forma modular. Independizar el funcionamiento de los controladores de los servicios que realizan su acción. Fácilitando la integración con las diferentes pruebas que la aplicación requiera. Además, de minimizar el código repetido.
 
 ```python
+
 # services\files\files.py
+
+"""Services for files controller"""
+
+# Retic
+from retic import env, App as app
+
+# Google
+from services.googledrive.googledrive import GoogleDrive
+
+# Filetype
+import filetype
+
+# Models
+from models import File, Folder
+
+# Services
+from retic.services.responses import success_response_service, error_response_service
+
+# Utils
+from services.utils.general import get_bytes_from_mb, get_mb_from_bytes
 
 def get_by_id_db(id):
     """Encontrar un archivo en la base de datos en base a un identificador
@@ -141,6 +164,44 @@ def get_by_id_db(id):
         return success_response_service(
             data=_file.to_dict(), msg="File found."
         )
+
+```
+
+## Archivo principal de la Aplicación
+
+El archivo principal únifica los controladores, las rutas, los servicios y crea el servidor de la aplicación.
+
+```python
+
+# app.py
+
+"""Main app"""
+
+# Retic
+from retic import App as app
+
+# Routes
+from routes.routes import router
+
+# SQLAlchemy
+from services.sqlalchemy.sqlalchemy import config_sqlalchemy
+
+# Definir la ruta del archivo de variables de entorno
+app.env.read_env('.env')
+
+# Agregar las rutas a la aplicación
+app.use(router)
+
+# Agregar configuración de la base de datos
+app.use(config_sqlalchemy(), "db_sqlalchemy")
+
+# Crear un servidor web
+app.listen(
+    use_reloader=True,
+    use_debugger=True,
+    hostname=app.env('APP_HOSTNAME', "localhost"),
+    port=app.env.int('APP_PORT', 1801),
+)
 
 ```
 
