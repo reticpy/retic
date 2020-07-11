@@ -180,7 +180,7 @@ python3 app.py
 
 Listo, has creado tu primera API. Visita el siguiente enlace <http://localhost:1801/> para ver el resultado.
 
-![alt text](https://github.com/reticpy/retic/raw/dev_documentation/docs/es/images/api_rest_app.png "API REST")
+![alt text](https://github.com/reticpy/retic/raw/dev_initial_app/docs/es/images/api_rest_app.png "API REST")
 
 [repository_releases]: https://github.com/reticpy/retic/releases
 

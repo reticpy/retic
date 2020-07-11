@@ -312,4 +312,4 @@ Retic hereda de la clase ``Request de Werkzeug`` para la gestión de sus peticio
 
 [doc_werkzeug_file_storage]: https://werkzeug.palletsprojects.com/en/1.0.x/datastructures/#werkzeug.datastructures.FileStorage
 
-[retic_postman_collection]: https://github.com/reticpy/retic/blob/dev_documentation/docs\es\guide\Retic.postman_collection.json
+[retic_postman_collection]: https://github.com/reticpy/retic/blob/dev_initial_app/docs\es\guide\Retic.postman_collection.json

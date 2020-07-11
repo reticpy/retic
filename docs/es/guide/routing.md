@@ -147,6 +147,6 @@ router.get("/downloads/files/:file", oauth.verify, sso.verify, files.download_by
 
 [git_repath]: https://github.com/nickcoutsos/python-repath
 
-[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/request.md
+[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/request.md
 
-[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/response.md
+[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/response.md

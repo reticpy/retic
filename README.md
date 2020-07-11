@@ -55,4 +55,4 @@ Do you want to send an error, contribute some code or improve the documentation?
 [changelog]: https://github.com/reticpy/retic/blob/dev_initial_app/CHANGELOG.md
 [contribute]: https://github.com/reticpy/retic/blob/dev_initial_app/CONTRIBUTING.md
 [hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-hel
-[docs_introduction]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/introduction.md
+[docs_introduction]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/guide/introduction.md

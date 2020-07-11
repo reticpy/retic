@@ -205,6 +205,8 @@ app.listen(
 
 ```
 
+Por defecto retic utiliza el archivo ``.env`` para buscar las variables de entorno, sin embargo, la ruta del archivo puede ser diferente e incluso cargarlas directamente desde el sistema. Para más información visita la sección de [environment][docs_services_env].
+
 ## Utilerias
 
 Retic cuenta con una biblioteca de servicios más utilizados para dar ayudarte en que te enfoques en lo que verdaderamente importa, la lógica de tu aplicación.
@@ -215,12 +217,14 @@ Para más detalles visita la [guía de utilerias][docs_services].
 
 [wiki_crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 
-[docs_routing]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/guide/routing.md
+[docs_routing]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/guide/routing.md
 
-[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/request.md
+[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/request.md
 
-[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/response.md
+[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/response.md
 
-[docs_hooks_next]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/hooks/next.md
+[docs_hooks_next]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/next.md
 
-[docs_services]: https://github.com/reticpy/retic/blob/dev_documentation/docs/es/services/services.md
+[docs_services_env]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/services/enviroment.md
+
+[docs_services]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/services/services.md

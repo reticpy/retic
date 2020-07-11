@@ -418,4 +418,4 @@ Retic hereda de la clase ``Response de Werkzeug`` para la gestión de las respue
 
 [doc_werkzeug_res]: https://werkzeug.palletsprojects.com/en/1.0.x/wrappers/#werkzeug.wrappers.Response
 
-[retic_postman_collection]: https://github.com/reticpy/retic/blob/dev_documentation/docs\es\guide\Retic.postman_collection.json
+[retic_postman_collection]: https://github.com/reticpy/retic/blob/dev_initial_app/docs\es\guide\Retic.postman_collection.json
