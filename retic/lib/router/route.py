@@ -1,5 +1,5 @@
 # Utils
-from retic.services.general import _get_number_parameters
+from retic.services.core.general import get_number_parameters
 
 
 class Route(object):
@@ -25,7 +25,7 @@ class Route(object):
         # assert _handles, "error: Next function is invalid, the function has not more controllers"
 
         _fn = _handles.pop(0).handle
-        _num_param = _get_number_parameters(_fn)
+        _num_param = get_number_parameters(_fn)
 
         if _num_param == 3:
             return _fn(req, res, next.next)

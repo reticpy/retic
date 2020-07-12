@@ -1,6 +1,6 @@
 # Utils
 from retic.services.exceptions import get_file_error_exception
-from retic.services.general import _path_regexp
+from retic.services.core.general import path_regexp
 
 
 class Layer(object):
@@ -14,7 +14,7 @@ class Layer(object):
         self.keys = []
         self.name = fn.__name__ if fn.__name__ else '<anonymous>'
         self.params = self.path = self.route = None
-        self.regexp = _path_regexp(path, self.keys, options)
+        self.regexp = path_regexp(path, self.keys, options)
 
     def handle_request(self, req, res, next):  # dispatch
         """Return a handle request for specific route"""

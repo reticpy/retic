@@ -32,6 +32,7 @@ retic-example
 │       │   ...
 |   │   ...
 │
+│   .env
 │   app.py
 │   requirements.txt
 ```

@@ -42,6 +42,7 @@ Define la estructura de una respuesta a una petición del cliente en formato JSO
 ```python
 
 # Retic
+from retic import Request, Response
 from retic.services.responses import success_response_service
 
 def upload(req: Request, res: Response):
@@ -79,6 +80,7 @@ Define la estructura de una respuesta a una petición del cliente en formato JSO
 ```python
 
 # Retic
+from retic import Request, Response
 from retic.services.responses import error_response_service
 
 def upload(req: Request, res: Response):
@@ -107,6 +109,68 @@ A continuación se presenta el resulta de la petición en formato JSON.
 
 Retic proporciona una variedad de servicios generalizados, con enfoque en validación de parámetros obligatorios y otras funcionalidades.
 
+### Servicios de URLs
+
+#### urlencode(*url: str*)
+
+Esta función es conveniente cuando se codifica una cadena para usar parte de una URL en una consulta como una forma conveniente de pasar variables a la página siguiente.
+
+**Parámetros:**
+
+* url: URL a codificar.
+
+```python
+
+# Retic
+from retic.services.general.urls import urlencode
+
+def get_from_req(url):
+    """Codificar la url"""
+    url_encode = urlencode(url)
+
+```
+
+```sh
+# Entrada
+"http://example.com/"
+
+# Salida
+"http%3A%2F%2Fexample.com%2F"
+
+```
+
+#### slugify(*text: str* = "")
+
+Simplifica las cadenas feas en URL amigables.
+
+**Parámetros:**
+
+* text: Texto a simplificar de tipo ``str``.
+
+```python
+
+# Retic
+from retic.services.general.urls import slugify
+
+def get_slug_from_title(title):
+    """Get slug from a title"""
+    return slugify(title)
+
+```
+
+```sh
+# Entrada
+"This Alpha’s Pheromones Are Exploding"
+
+# Salida
+"this-alphas-pheromones-are-exploding"
+
+```
+
+## Sericios de validación
+
+Retic ofrece la capacidad de validar ciertos requisitos en una petición de forma nativa. Por ejemplo que los parámetros obligatorios en una petición sean válidos.
+
 ### validate_obligate_fields(*fields: any* = None)
 
 La mayoría de las veces existen valores que son obligatorios, Retic ofrece el servicio ``validate_obligate_fields(...)`` que verifica si una lista de parámetros obligatorios son validos.
@@ -118,6 +182,9 @@ La mayoría de las veces existen valores que son obligatorios, Retic ofrece el s
 El siguiente ejemplo valida que exista el parametro ``files`` el cual se obtiene cuando se envia un archivo en una petición.
 
 ```python
+
+# Retic
+from retic import Request, Response
 
 def upload(req: Request, res: Response):
     """Obtener una lsita desde la petición, si no existe, retorna una lista vacia por defecto.
@@ -156,7 +223,8 @@ Convierte un diccionario JSON a su equivalente en cadena de texto.
 ```python
 
 # Retic
-from retic.services.json import jsonify
+from retic import Request, Response
+from retic.services.general.json import jsonify
 
 def upload(req: Request, res: Response):
     text = jsonify({u'msg': 'say hi!'})
@@ -165,7 +233,7 @@ def upload(req: Request, res: Response):
 
 A continuación se presenta el resulta de la petición en cadena de texto.
 
-```python
+```sh
 
 text: '{"msg": "say hi!"}'
 
@@ -182,7 +250,8 @@ Deserializar (una instancia de str, bytes o bytearray que contiene un documento 
 ```python
 
 # Retic
-from retic.services.json import parse
+from retic import Request, Response
+from retic.services.general.json import parse
 
 def upload(req: Request, res: Response):
     text_json = parse('{"msg": "say hi!"}')
@@ -191,7 +260,7 @@ def upload(req: Request, res: Response):
 
 A continuación se presenta el resulta de la petición en formato JSON.
 
-```python
+```sh
 
 text_json: {"msg": "say hi!"}
 

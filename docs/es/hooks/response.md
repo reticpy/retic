@@ -82,8 +82,9 @@ Esto generalmente significa que la solicitud contenía parámetros o cabeceras n
 ```python
 
 # Retic
+from retic import Request, Response
 from retic.services.responses import error_response_service
-from retic.services.general import validate_obligate_fields
+from retic.services.validations import validate_obligate_fields
 
 def upload(req: Request, res: Response):
 

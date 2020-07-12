@@ -6,7 +6,7 @@ from werkzeug.routing import RequestRedirect
 from httpmethods import get_status_by_code
 
 # Utils
-from retic.services.json import jsonify
+from retic.services.general.json import jsonify
 
 
 class Response(Response):
