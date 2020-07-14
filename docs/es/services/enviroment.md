@@ -40,9 +40,10 @@ from retic import App as app
 from routes.routes import router
 
 # Configurar la ruta del archivo de entorno
-app.env.read_env('.env')
+app.env.read_env('.env', override=True)
 
 ```
+
 ## Uso básico
 
 La busqueda de una variable de entorno se realiza por su nombre, de no existir, se puede asignar un valor por defecto, caso contrario devolverá una excepción que indica que la variable no existe en el sistema.

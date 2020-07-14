@@ -108,13 +108,24 @@ Responde con ``Hola mundo`` en la página de inicio:
 # Retic
 from retic import Router
 
+# Controllers
+import controllers.files as files
+
+"""Definir la instancia de las rutas"""
 router = Router()
 
+"""Definir todas las rutas - /"""
 router \
     .get("/", lambda req, res, next: res.send({"msg": "Hola mundo - HTTP GET"})) \
     .post("/", lambda req, res, next: res.send({"msg": "Hola mundo - HTTP POST"})) \
     .put("/", lambda req, res, next: res.send({"msg": "Hola mundo - HTTP PUT"})) \
     .delete("/", lambda req, res, next: res.send({"msg": "Hola mundo - HTTP DELETE"}))
+
+"""Definir todas las rutas - files"""
+router \
+    .post("/files", files.upload) \
+    .get("/files/:id", files.get_by_id)
+
 ```
 
 Para más detalles visita la [guía de enrutamiento][docs_routing].
@@ -127,7 +138,7 @@ Retic recomienda estructurar la aplicación de forma modular. Independizar el fu
 
 # services\files\files.py
 
-"""Services for files controller"""
+"""Servicios para el controlador de archivos"""
 
 # Retic
 from retic import env, App as app

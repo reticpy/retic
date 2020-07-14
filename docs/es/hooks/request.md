@@ -37,6 +37,8 @@ req.args: ImmutableMultiDict([('queryparam', '13344')])
 
 ```
 
+Por defecto un ``ImmutableMultiDict`` es retornado en esta función, contiene funciones como ```getlist```, ``get``, ``get_all`` para interactuar de los párametros en la URL de una petición. Para más detalles visita la documentación oficial sobre la clase [ImmutableMultiDict][doc_werkzeug_immu_list].
+
 ### base_url
 
 URL de la petición sin paramertros *querystring*.
