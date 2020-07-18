@@ -23,7 +23,8 @@ Por defecto se buscan variables en el archivo ``.env`` de existir. Sin embargo, 
 * override: Sobreescribe las variables actuales en el sistema operativo. El valor predeterminado es ``False``.
 
 ```sh
-# .env
+
+# .env.development
 
 #App
 APP_HOSTNAME            =localhost
@@ -40,7 +41,7 @@ from retic import App as app
 from routes.routes import router
 
 # Configurar la ruta del archivo de entorno
-app.env.read_env('.env', override=True)
+app.env.read_env('.env.development', override=True)
 
 ```
 
@@ -69,6 +70,7 @@ Por defecto Retic retorna el valor en formato ``str``, sin embargo, Retic permit
 * env.path (casts to a pathlib.Path)
 
 ```sh
+
 # .env
 
 #App
@@ -86,7 +88,7 @@ from retic import App as app
 from routes.routes import router
 
 # Configurar la ruta del archivo de entorno
-app.env.read_env('.env')
+app.env.read_env('.env.development')
 
 # Agregar rutas a la aplicación
 app.use(router)

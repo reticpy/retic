@@ -186,6 +186,10 @@ El siguiente ejemplo valida que exista el parametro ``files`` el cual se obtiene
 # Retic
 from retic import Request, Response
 
+# Services
+from retic.services.validations import validate_obligate_fields
+from retic.services.responses import error_response_service
+
 def upload(req: Request, res: Response):
     """Obtener una lsita desde la petición, si no existe, retorna una lista vacia por defecto.
     """
