@@ -57,10 +57,24 @@ Por ejemplo, la ruta GET ``/files/:id`` en su aplicación podría estar vinculad
 from retic import Request, Response, Next
 
 # Services
+from retic.services.validations import validate_obligate_fields
 import services.files.files as files
 
 def get_by_id(req: Request, res: Response, next: Next):
     """Obtener un archivo por su ientificador"""
+
+    """Validar todos los parametros obligatorios"""
+    _validate = validate_obligate_fields({
+        u'title': req.param('title'),
+    })
+
+    """Si existen problemas, retornar un mensaje de error"""
+    if _validate["valid"] is False:
+        return res.bad_request(
+            error_response_service(
+                "The param {} is necesary.".format(_validate["error"])
+            )
+        )
 
     _file_db = files.get_by_id_db(req.param("id"))
 
