@@ -167,6 +167,30 @@ def get_slug_from_title(title):
 
 ```
 
+### Servicios del Tiempo
+
+#### sleep(*seconds: int* = 0)
+
+El método de tiempo Python sleep() suspende la ejecución por el número de segundos dado. El argumento puede ser un número de coma flotante para indicar un tiempo de descanso más preciso.
+
+**Parámetros:**
+
+* seconds: Total de segundos que el programa estará durmiendo.
+
+```python
+
+# Retic
+from retic.services.general.time import sleep
+
+# Contantes
+SLEEP_TIME=2
+
+def download_from_url(url):
+    """Dormir el programa durante un tiempo especifico"""
+    sleep(SLEEP_TIME)
+
+```
+
 ## Sericios de validación
 
 Retic ofrece la capacidad de validar ciertos requisitos en una petición de forma nativa. Por ejemplo que los parámetros obligatorios en una petición sean válidos.

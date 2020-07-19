@@ -210,9 +210,6 @@ from routes.routes import router
 # SQLAlchemy
 from services.sqlalchemy.sqlalchemy import config_sqlalchemy
 
-# Definir la ruta del archivo de variables de entorno
-app.env.read_env('.env.development', override=True)
-
 # Agregar las rutas a la aplicación
 app.use(router)
 

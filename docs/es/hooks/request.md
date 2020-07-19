@@ -213,7 +213,7 @@ req.retic: {'app1': {'msg': 'say hi!'}}
 
 La clase Request utiliza las siguientes funciones para manipulación de su información.
 
-### param(*key: str*, *default_value: any* = None)
+### param(*key: str*, *default_value: any* = None, *callback* = None)
 
 Devuelve el valor del parámetro con el nombre especificado.
 
@@ -225,13 +225,15 @@ Devuelve el valor del parámetro con el nombre especificado.
   
 * default_value: Valor por defecto si el parámetro no existe.
 
+* callback: Función que se ejecuta luego de obtener el valor del párametro, puede ser ``bool``, ``int``, ``str``, etc.
+
 ```python
 
 # URL de la petición HTTP
 GET http://localhost:1801/files/123?queryparam=13344
 
 # Imprimir el valor actual del parámetro id, o utilizar un valor por defecto
-print(req.param('id', 'default_value'))
+print(req.param('id', 'default_value', int))
 print(req.param('id3')
 
 # Salida: 123

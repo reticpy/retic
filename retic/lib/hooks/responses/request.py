@@ -52,7 +52,7 @@ class Request(Request):
         self.retic = self.params = {}
         return self
 
-    def param(self, key: str, default_value: any = None):
+    def param(self, key: str, default_value: any = None, callback=None):
         """Returns the value of the parameter with the specified name.
 
         req.param(...) finds in the URL path, body, and query string (in that order) 
@@ -61,12 +61,17 @@ class Request(Request):
 
         :param key: Name of the parameter to find
         :param default_value: Value of the parameter if this one doesn't exist
+        :param callback: Function that is executed after getting the value        
         """
         if key in self.params:
-            return self.params.get(key)
+            _value = self.params.get(key)
         elif key in self.body.value:
-            return self.body.value.get(key)
-        return self.args.get(key, default_value)
+            _value = self.body.value.get(key)
+        else:
+            _value = self.args.get(key, default_value)
+        if not callback:
+            return _value
+        return callback(_value)
 
     def set(self, key: str, value: any = None):
         """Set a value in the requests (req).
@@ -81,7 +86,7 @@ class Request(Request):
     def get(self, key: str, default_value: any = None):
         """Returns the value of an object in retic with a specific name. 
         Please note that names are not case sensitive. 
-        
+
         If the value does not exist in the request, it returns None or 
         the default value specified by default.
 
