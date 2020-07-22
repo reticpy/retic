@@ -230,13 +230,24 @@ app.use(router)
 # Agregar configuración de la base de datos
 app.use(config_sqlalchemy(), "db_sqlalchemy")
 
-# Crear un servidor web
-app.listen(
-    use_reloader=True,
-    use_debugger=True,
-    hostname=app.env('APP_HOSTNAME', "localhost"),
-    port=app.env.int('APP_PORT', 1801),
-)
+
+def application(req, res):
+    """Deploying and hosting
+
+    We use the application from the App class, it's use for passenger_wsgi.py
+    """
+    return app.application(req, res)
+
+
+if __name__ == "__main__":
+    # Create web server
+    app.listen(
+        # use_reloader=True,
+        # use_debugger=True,
+        hostname=app.env('APP_HOSTNAME', "localhost"),
+        port=app.env.int('APP_PORT', 1801),
+    )
+
 
 ```
 
@@ -264,7 +275,6 @@ Por defecto la función ``read_env()`` realiza una busqueda del archivo ``.env``
 
 # .env.development
 
-#App
 #App
 APP_HOSTNAME            =localhost
 APP_PORT                =1801
