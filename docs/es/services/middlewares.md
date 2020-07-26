@@ -8,7 +8,7 @@ Retic proporciona servicios que funcionan como middlewares de la aplicación los
 
 ## cors(*methods: str*,*has_credentials: bool*,*origin: str*, *headers: str*, *expose_headers: str*)
 
-CORS es una abreviatura que significa 'Intercambio de recursos de origen cruzado' y, como su nombre lo indica, le permite compartir recursos de una variedad de fuentes. 
+CORS es una abreviatura que significa 'Intercambio de recursos de origen cruzado' y, como su nombre lo indica, le permite compartir recursos de una variedad de fuentes.
 
 **Parámetros:**
 
@@ -36,10 +36,16 @@ import controllers.files as files
 """Definir la instancia de Router"""
 router = Router()
 
+"""Define CORS"""
+_cors = cors(
+    headers="Content-Type,source",
+    expose_headers="Content-Type,source"
+)
+
 """Agergar las cabeceras que proporciona la función cors a todas las rutas"""
-router.use(cors())
+router.use(_cors)
 
 """Define el metodo options para todas las rutas que comiencen con /"""
-router.options("/*", cors())
+router.options("/*", _cors)
 
 ```

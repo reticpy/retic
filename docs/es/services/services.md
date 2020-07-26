@@ -222,7 +222,8 @@ def upload(req: Request, res: Response):
 
     """Validar si todos los campos obligatorios son validos"""
     _validate = validate_obligate_fields({
-        u'files': _files
+        u'files': _files,
+        u'source': req.headers['source'] if "source" in req.headers else None
     })
 
     """Si existe algún campo invalido, retorna un mensaje de error y una respuesta de tipo 400 Bad request.

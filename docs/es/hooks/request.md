@@ -142,6 +142,16 @@ EnvironHeaders([('Cookie', 'cookie1=123456'), ('User-Agent', 'PostmanRuntime/7.2
 
 ```
 
+```python
+
+source = req.headers['source']
+source = req.headers['Source']
+
+# http://localhost:1810/downloads/files/3db7ce17ced111eab61ae454e894d9d6
+# http://localhost:1810/downloads/files/3db7ce17ced111eab61ae454e894d9d6
+
+```
+
 ### host
 
 Contiene el nombre del host y el puerto si este está disponible.
