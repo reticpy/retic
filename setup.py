@@ -15,7 +15,7 @@ setuptools.setup(
     url='https://github.com/reticpy/retic',
     packages=setuptools.find_packages(),
     include_package_data=True,    
-    download_url='https://github.com/reticpy/retic/archive/0.1.0.tar.gz',
+    download_url='https://github.com/reticpy/retic/archive/0.1.0-beta.tar.gz',
     keywords=['PYTHON', 'WEB FRAMEWORK', 'MACHINE LEARNING WEB FRAMEWORK'],
     install_requires=[
         "environs>=7.4.0",
