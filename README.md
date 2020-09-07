@@ -1,6 +1,6 @@
 # Retic
 
-Retic is a framework for creating solutions in Python.
+Retic is a framework for Python.
 
 Designed to attack the following points in software development:
 

@@ -7,7 +7,7 @@ setuptools.setup(
     name='retic',
     version='0.1.0',
     license='MIT',
-    description='Fastest, easiest and simple web framework for Python.',
+    description='Retic is a framework for Python.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Braian Staimer',
