@@ -1,6 +1,6 @@
 ---
 title: Request
-type: hooks
+type: api
 order: 1
 ---
 
@@ -19,7 +19,7 @@ Lista todas las direcciones IP que intervienen en la petición.
 ```python
 
 # Valor actual de access_route
-req.access_route: ImmutableList(['172.18.5.107'])
+req.access_route: ImmutableList(['127.0.0.1'])
 
 ```
 
@@ -46,7 +46,7 @@ URL de la petición sin paramertros *querystring*.
 ```python
 
 # Valor actual de base_url
-req.base_url: 'http://172.18.5.107:1801/files/123'
+req.base_url: 'http://127.0.0.1:1801/files/123'
 
 ```
 

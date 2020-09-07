@@ -42,7 +42,7 @@ def app_routes():
     return Client(app.application)
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_response_without_method(app_client, path):
     """we include a valid route and controllers"""
@@ -51,7 +51,7 @@ def test_response_without_method(app_client, path):
         status)
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_response_without_method_routes(app_routes, path):
     """we include a valid route and controllers"""

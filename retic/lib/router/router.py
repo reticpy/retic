@@ -17,7 +17,7 @@ import sys
 import os
 
 # Retic
-from retic.lib.hooks.responses import Request, Response, Next
+from retic.lib.api.responses import Request, Response, Next
 from retic.lib.router.httpmethod import HttpMethod
 from retic.lib.router.route import Route
 from retic.lib.router.layer import Layer

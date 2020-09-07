@@ -92,7 +92,7 @@ def test_config_clear():
 """Test about main App"""
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS_ROUTES)
 def test_request_clear_app(app_without_client, path):
     _app = Client(app_without_client.application)

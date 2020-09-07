@@ -1,6 +1,6 @@
 ---
 title: Response
-type: hooks
+type: api
 order: 2
 ---
 
@@ -83,7 +83,7 @@ Esto generalmente significa que la solicitud contenía parámetros o cabeceras n
 
 # Retic
 from retic import Request, Response
-from retic.services.responses import error_response_service
+from retic.services.responses import error_response
 from retic.services.validations import validate_obligate_fields
 
 def upload(req: Request, res: Response):
@@ -95,7 +95,7 @@ def upload(req: Request, res: Response):
 
     if _validate["valid"] is False:
         return res.bad_request(
-            error_response_service(
+            error_response(
                 "The param {} is necesary.".format(_validate["error"])
             )
         )
@@ -126,7 +126,7 @@ Esto generalmente significa que el agente de usuario intentó hacer algo que ell
 
 # Retic
 from retic import Request, Response
-from retic.services.responses import error_response_service
+from retic.services.responses import error_response
 
 # Services
 from services.users.users as users
@@ -141,7 +141,7 @@ def login(req: Request, res: Response):
 
     if _user["valid"] is False:
         return res.forbidden(
-            error_response_service("User is invalid.")
+            error_response("User is invalid.")
         )
 
 ```
@@ -277,7 +277,7 @@ from retic import Request, Response
 
 def undefined(req: Request, res: Response):
     res.server_error(
-        error_response_service("Controller is invalid.")
+        error_response("Controller is invalid.")
     )
 
 ```

@@ -71,7 +71,7 @@ def get_by_id(req: Request, res: Response, next: Next):
     """Si existen problemas, retornar un mensaje de error"""
     if _validate["valid"] is False:
         return res.bad_request(
-            error_response_service(
+            error_response(
                 "The param {} is necesary.".format(_validate["error"])
             )
         )
@@ -89,11 +89,11 @@ def get_by_id(req: Request, res: Response, next: Next):
 
 Cada controlador recibe los siguientes parametros:
 
-* [Request][docs_hooks_req]: Representa una solicitud HTTP hacia el servidor.
+* [Request][docs_api_req]: Representa una solicitud HTTP hacia el servidor.
   
-* [Response][docs_hooks_res]: Representa una respuesta al cliente desde el servidor.
+* [Response][docs_api_res]: Representa una respuesta al cliente desde el servidor.
   
-* [Next][docs_hooks_next]: Permite pasar el control de la petición al siguiente controlador.
+* [Next][docs_api_next]: Permite pasar el control de la petición al siguiente controlador.
 
 ## Enrutamiento
 
@@ -173,7 +173,7 @@ import filetype
 from models import File, Folder
 
 # Services
-from retic.services.responses import success_response_service, error_response_service
+from retic.services.responses import success_response, error_response
 
 # Utils
 from services.utils.general import get_bytes_from_mb, get_mb_from_bytes
@@ -191,9 +191,9 @@ def get_by_id_db(id):
 
     """Validar que el archivo exista, caso contrario, mostrar un error"""
     if not _file:
-        return error_response_service(msg="File not found.")
+        return error_response(msg="File not found.")
     else:
-        return success_response_service(
+        return success_response(
             data=_file.to_dict(), msg="File found."
         )
 
@@ -413,11 +413,11 @@ Para más detalles visita la [guía de utilerias][docs_services].
 
 [docs_routing]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/guide/routing.md
 
-[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/request.md
+[docs_api_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/api/request.md
 
-[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/response.md
+[docs_api_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/api/response.md
 
-[docs_hooks_next]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/next.md
+[docs_api_next]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/api/next.md
 
 [docs_services_env]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/services/enviroment.md
 

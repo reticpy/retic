@@ -1,6 +1,6 @@
 ---
 title: Next
-type: hooks
+type: api
 order: 3
 ---
 
@@ -10,7 +10,7 @@ El objeto ``next`` hace referencia al método ``next()`` de la instancia de la c
 
 # Retic
 from retic import Request, Response, Next
-from retic.services.responses import error_response_service
+from retic.services.responses import error_response
 from retic.services.validations import validate_obligate_fields
 
 # Services

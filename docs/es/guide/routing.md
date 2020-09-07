@@ -46,7 +46,7 @@ Agrega una función middleware que se ejecuaráe para todas las rutas en la apli
 
 # Retic
 from retic import Router
-from retic.lib.hooks.middlewares import cors
+from retic.lib.api.middlewares import cors
 
 """Definir la instancia Router"""
 router = Router()
@@ -66,7 +66,7 @@ Retic soporta los siguientes métodos HTTP: ``get``, ``post``, ``put``, ``head``
 
 # Retic
 from retic import Router
-from retic.lib.hooks.middlewares import cors
+from retic.lib.api.middlewares import cors
 
 # Controllers
 import controllers.files as files
@@ -112,7 +112,7 @@ router.post("/files", files.upload)
 
 ```
 
-Retic permite declarar variables y capturar su valor automaticamente dentro del atributo ``params`` de la clase [Request][docs_hooks_req]. Los parámetros se declaran con el prefijo ":" seguido del nombre del párametro, por ejemplo: ``/files/:id``, el cual puede ser accedido desde el controlador de la siguiente forma: ``req.params('id')``.
+Retic permite declarar variables y capturar su valor automaticamente dentro del atributo ``params`` de la clase [Request][docs_api_req]. Los parámetros se declaran con el prefijo ":" seguido del nombre del párametro, por ejemplo: ``/files/:id``, el cual puede ser accedido desde el controlador de la siguiente forma: ``req.params('id')``.
 
 La siguiente ruta permite acceder por medio de ``/files`` utilizando el método HTTP ``get`` y ejecutar la función ``get_by_id` del controlador de archivos en cual obtiene la información de un archivo en base a su identificador.
 
@@ -124,7 +124,7 @@ router.get("/files/:id", files.get_by_id)
 
 ### Manejadores de rutas
 
-Cada ruta permite tener uno o más funciones asociadas a ella. Estas funciones se utilizan como middlewares o acciones espeficicas para cada ruta. Para pasar de una función a la siguiente se utiliza la ``next()`` de la clase [Response][docs_hooks_res].
+Cada ruta permite tener uno o más funciones asociadas a ella. Estas funciones se utilizan como middlewares o acciones espeficicas para cada ruta. Para pasar de una función a la siguiente se utiliza la ``next()`` de la clase [Response][docs_api_res].
 
 ```python
 
@@ -147,6 +147,6 @@ router.get("/downloads/files/:file", oauth.verify, sso.verify, files.download_by
 
 [git_repath]: https://github.com/nickcoutsos/python-repath
 
-[docs_hooks_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/request.md
+[docs_api_req]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/api/request.md
 
-[docs_hooks_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/hooks/response.md
+[docs_api_res]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/api/response.md

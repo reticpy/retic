@@ -14,7 +14,7 @@ def validate_obligate_fields(fields: any = None):
 
     if _validate["valid"] is False:        
         return res.bad_request(            
-            error_response_service(                
+            error_response(                
                 "The param {} is necesary.".format(_validate["error"])                
             )            
         )

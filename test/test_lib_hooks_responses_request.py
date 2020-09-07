@@ -6,7 +6,7 @@ import pytest
 
 # Retic
 from retic import App as app, Router
-from retic.lib.hooks.system.env import env
+from retic.lib.api.system.env import env
 from retic.services.core.general import get_body_request
 from retic.services.general.json import parse
 
@@ -61,7 +61,7 @@ def app_without_client():
 """Test about Body"""
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_request_without_body(app_routes, path):
     """we include a valid route and controllers"""
@@ -72,7 +72,7 @@ def test_request_without_body(app_routes, path):
     assert _body.get("value") == "undefiend"
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_request_with_body_json(app_routes, path):
     """we include a valid route and controllers"""
@@ -83,7 +83,7 @@ def test_request_with_body_json(app_routes, path):
     assert _body.get("value") == {'text': 'example'}
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_request_with_body_form(app_routes, path):
     """we include a valid route and controllers"""
@@ -94,7 +94,7 @@ def test_request_with_body_form(app_routes, path):
     assert _body.get("value") == {'text': 'example'}
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_request_with_body_text(app_routes, path):
     """we include a valid route and controllers"""
@@ -109,7 +109,7 @@ def test_request_with_body_text(app_routes, path):
     assert _body.get("value") == "{'text': 'example'}"
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS)
 def test_request_with_body_raw(app_routes, path):
     """we include a valid route and controllers"""
@@ -127,7 +127,7 @@ def test_request_with_body_raw(app_routes, path):
 """Test about Redirects"""
 
 
-@pytest.mark.lib_hooks
+@pytest.mark.lib_api
 @pytest.mark.parametrize("path", PATHS_SLASH)
 def test_request_with_slash(app_routes, path):
     """we include a valid route and controllers"""

@@ -28,7 +28,7 @@ Por seguridad, Retic protege las rutas con el método ``options`` de accesos no 
 
 # Retic
 from retic import Router
-from retic.lib.hooks.middlewares import cors
+from retic.lib.api.middlewares import cors
 
 # Controllers
 import controllers.files as files

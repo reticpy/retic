@@ -29,7 +29,7 @@ Donde:
 
 * data: Información de respuesta a la petición del cliente.
 
-### success_response_service(*data: any* = None, *msg: str* = "")
+### success_response(*data: any* = None, *msg: str* = "")
 
 Define la estructura de una respuesta a una petición del cliente en formato JSON e indica que todo finalizó correctamente.
 
@@ -43,11 +43,11 @@ Define la estructura de una respuesta a una petición del cliente en formato JSO
 
 # Retic
 from retic import Request, Response
-from retic.services.responses import success_response_service
+from retic.services.responses import success_response
 
 def upload(req: Request, res: Response):
     """Upload to Storage"""
-    res.ok(success_response_service(
+    res.ok(success_response(
         data={u'msg': 'say hi!'},
         msg="The upload finishied."
     ))
@@ -69,7 +69,7 @@ A continuación se presenta el resulta de la petición en formato JSON.
 
 ```
 
-### error_response_service(*msg: str* = "")
+### error_response(*msg: str* = "")
 
 Define la estructura de una respuesta a una petición del cliente en formato JSON la cual contiene errores.
 
@@ -81,13 +81,13 @@ Define la estructura de una respuesta a una petición del cliente en formato JSO
 
 # Retic
 from retic import Request, Response
-from retic.services.responses import error_response_service
+from retic.services.responses import error_response
 
 def upload(req: Request, res: Response):
 
     """Return a error message."""
     return res.bad_request(
-        error_response_service(
+        error_response(
             "The param files is necesary."
         )
     )
@@ -212,7 +212,7 @@ from retic import Request, Response
 
 # Services
 from retic.services.validations import validate_obligate_fields
-from retic.services.responses import error_response_service
+from retic.services.responses import error_response
 
 def upload(req: Request, res: Response):
     """Obtener una lsita desde la petición, si no existe, retorna una lista vacia por defecto.
@@ -230,7 +230,7 @@ def upload(req: Request, res: Response):
     """
     if _validate["valid"] is False:
         return res.bad_request(
-            error_response_service(
+            error_response(
                 "The param {} is necesary.".format(_validate["error"])
             )
         )
