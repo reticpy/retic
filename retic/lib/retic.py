@@ -13,6 +13,11 @@ APP_PORT = 1801
 
 class App(object):
     def __init__(self, env):
+        """
+        Main instance of the application.
+
+        :param env: Environment variables.
+        """
         self.router: Router = None
         self.apps = {}
         self.env: Env = env
@@ -74,8 +79,8 @@ class App(object):
     def use(self, item: any, name: str = ""):
         """method of configuring the middleware.
 
-        :param item: item of specific type for specific settings in a app
-        :return: instance of the parant type for the item
+        :param item: Item of specific type for specific settings in a app
+        :param name: Name of the item to save
         """
 
         """TODO: implement another types of item"""
@@ -88,21 +93,21 @@ class App(object):
 
     def listen(
         self,
-        hostname=APP_HOSTNAME,
-        port=APP_PORT,
-        application=None,
-        use_reloader=False,
-        use_debugger=False,
-        use_evalex=True,
-        extra_files=None,
-        reloader_interval=1,
-        reloader_type='auto',
-        threaded=False,
-        processes=1,
-        request_handler=None,
-        static_files=None,
+        hostname: str = APP_HOSTNAME,
+        port: int = APP_PORT,
+        application: any = None,
+        use_reloader: bool = False,
+        use_debugger: bool = False,
+        use_evalex: bool = True,
+        extra_files: any = None,
+        reloader_interval: int = 1,
+        reloader_type: str = 'auto',
+        threaded: bool = False,
+        processes: int = 1,
+        request_handler: any = None,
+        static_files: any = None,
         passthrough_errors=False,
-        ssl_context=None
+        ssl_context: any = None
     ):
         """Create a server based in settings parameters.
 
@@ -195,7 +200,7 @@ class Config(object):
             )
         self.__config = value
 
-    def get(self, key, default_value=None, callback=None):
+    def get(self, key: str, default_value: dict = None, callback: any = None):
         """Returns the value of the parameter with the specified name.
         If the variable doesn't exist in the configuration values, this search
         in the environment variables and return a string. If you need a specific
@@ -210,7 +215,7 @@ class Config(object):
             return _value
         return callback(_value)
 
-    def set(self, key, value):
+    def set(self, key: str, value: dict):
         """Set a value in the settings of the app.
 
         Please note that names are not case sensitive.
@@ -220,7 +225,7 @@ class Config(object):
         """
         self.__config.setdefault(key, value)
 
-    def from_object(self, settings):
+    def from_object(self, settings: dict):
         """Set settings in based a dictionary, for example, if you want to
         set a additional configuration you nedd pass:
 

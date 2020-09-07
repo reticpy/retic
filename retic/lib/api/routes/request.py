@@ -8,7 +8,7 @@ from retic.services.general.json import parse
 class Body(object):
     """Class for the body from a request"""
 
-    def __init__(self, type, value):
+    def __init__(self, type: dict, value: dict):
         """Define the type of the object"""
         self.type: dict = type
         """Value of the object"""

@@ -1,4 +1,5 @@
 # Libs
 from retic.lib import *
 
-__version__ = "0.0.1"
+# TODO: Add version
+__version__ = ""

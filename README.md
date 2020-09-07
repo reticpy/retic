@@ -1,58 +1,64 @@
-# Retic.<span></span>py
+# Retic
 
-Fastest, easiest and simplest web framework for Python.
+Retic is a framework for creating solutions in Python.
 
-* Building secure and **fast** REST services with Python
-* A **easy** Python web framework for beginners.
-* **Simple** integration with frontend frameworks to deploying a machine learning model in a modern web application.
+Designed to attack the following points in software development:
+
+- **Learning curve**: Python has a short learning curve.
+
+- **Hosting**: Quick and easy configuration on the servers.
+
+- **Artificial intelligence**: The most important libraries are written in Python.
 
 ## Install a Python rest api framework
 
 Install and update using [Pip](https://pypi.org/):
 
-```sh
+```bash
 # Get the latest stable release of Retic
-$ pip install -U retic
+pip install -U retic
 ```
 
 ## Simple rest api example in Python
 
 ```Python
+
+# app.py
+
+"""Main app"""
+
 # Retic
 from retic import Router, App as app
 
+"""Define Router instance"""
 router = Router()
-router \
-    .get("/", lambda req, res, next: res.ok({"msg": "Welcome to Retic ^^"})) \
-    .get("/example", lambda req, res: res.ok({"msg": "Simple rest api example in Python"})) \
-    .get("/withoutres", lambda req, res: print("REST api Python example"))
 
+"""Define paths"""
+router \
+    .get("/", lambda req, res, next: res.ok({"msg": "Hello world! - HTTP GET"})) \
+    .post("/", lambda req, res, next: res.ok({"msg": "Hello world! - HTTP POST"})) \
+    .put("/", lambda req, res, next: res.send({"msg": "Hello world! - HTTP PUT"})) \
+    .delete("/", lambda req, res: res.send({"msg": "Hello world! - HTTP DELETE"}))
+
+"""Import router to App"""
 app.use(router)
 
+"""Create web server"""
 app.listen(
-    use_reloader=True,
-    use_debugger=True,
-    port=1801,
-    hostname="localhost"
+    hostname="localhost",
+    port=1801
 )
+
+
 ```
-
-## Quickstart
-
-* [Introduction to the Retic Docs][docs_introduction]
-
-* [Learn about the latest improvements][changelog].
 
 ## Want to help?
 
-Do you want to send an error, contribute some code or improve the documentation? Great, you can do it! Read our guidelines to [contribute][contribute] and then review one of our issues in the [hotlist: community-help][hotlist].
+Do you want to send an error, contribute some code or improve the documentation? Great, you can do it! Read our guidelines to contribute and then review one of our issues in the [hotlist: community-help][hotlist].
 
 ## License
 
 [MIT][LICENSE]
 
-[LICENSE]: https://github.com/reticpy/retic/blob/dev_initial_app/LICENSE
-[changelog]: https://github.com/reticpy/retic/blob/dev_initial_app/CHANGELOG.md
-[contribute]: https://github.com/reticpy/retic/blob/dev_initial_app/CONTRIBUTING.md
+[LICENSE]: https://github.com/reticpy/retic/blob/development/LICENSE
 [hotlist]: https://github.com/reticpy/retic/labels/hotlist%3A%20community-hel
-[docs_introduction]: https://github.com/reticpy/retic/blob/dev_initial_app/docs/es/guide/introduction.md
