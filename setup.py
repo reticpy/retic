@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='retic',
-    version='0.1.1',
+    version='0.1.2',
     license='MIT',
     description='Retic is a framework for Python.',
     long_description=long_description,

@@ -69,6 +69,8 @@ class Request(Request):
             _value = self.body.value.get(key)
         else:
             _value = self.args.get(key, default_value)
+        if not _value and default_value:
+            _value = default_value
         if not callback:
             return _value
         return callback(_value)
